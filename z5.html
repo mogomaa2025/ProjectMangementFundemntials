@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Project Management Profession</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #f8fafc;
+            --accent-color: #10b981;
+            --warning-color: #f59e0b;
+            --success-color: #22c55e;
+            --info-color: #3b82f6;
+            --text-dark: #1e293b;
+            --text-light: #64748b;
+            --border-color: #e2e8f0;
+            --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --card-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --hover-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--secondary-color);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        .nav-container {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .nav-brand {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--text-light);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-menu a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: var(--bg-gradient);
+            color: white;
+            padding: 120px 0 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="rgba(255,255,255,0.1)" points="0,0 1000,300 1000,1000 0,700"/></svg>');
+            background-size: cover;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .hero .subtitle {
+            font-size: 1.4rem;
+            opacity: 0.9;
+            margin-bottom: 40px;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 60px 0;
+        }
+
+        .section {
+            margin-bottom: 80px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: var(--card-shadow);
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--bg-gradient);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--hover-shadow);
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        h3 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 20px;
+        }
+
+        /* Chapter Sections */
+        .chapter-section {
+            border-left: 4px solid var(--primary-color);
+            padding-left: 30px;
+            margin: 50px 0;
+        }
+
+        .chapter-title {
+            background: var(--bg-gradient);
+            color: white;
+            padding: 20px 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        /* Growth Chart */
+        .chart-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 40px 0;
+            position: relative;
+        }
+
+        .chart-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 16px;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.3s ease;
+        }
+
+        .chart-image:hover {
+            transform: scale(1.02);
+        }
+
+        /* PMI Stats */
+        .pmi-stats {
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.1) 0%, rgba(37, 99, 235, 0.05) 100%);
+            border: 2px solid var(--primary-color);
+            border-radius: 16px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+
+        .pmi-stats h4 {
+            color: var(--primary-color);
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .stat-item {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        /* Organizations Grid */
+        .orgs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+
+        .org-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+            text-align: center;
+            transition: all 0.3s ease;
+            border-top: 4px solid var(--primary-color);
+        }
+
+        .org-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--hover-shadow);
+        }
+
+        .org-card:nth-child(1) { border-top-color: #3b82f6; }
+        .org-card:nth-child(2) { border-top-color: #10b981; }
+        .org-card:nth-child(3) { border-top-color: #f59e0b; }
+
+        .org-card i {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .org-card:nth-child(1) i { color: #3b82f6; }
+        .org-card:nth-child(2) i { color: #10b981; }
+        .org-card:nth-child(3) i { color: #f59e0b; }
+
+        .org-card h5 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--text-dark);
+        }
+
+        .org-card p {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            line-height: 1.5;
+        }
+
+        /* PMP Benefits */
+        .pmp-benefits {
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.1) 0%, rgba(34, 197, 94, 0.05) 100%);
+            border: 2px solid var(--success-color);
+            border-radius: 16px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+
+        .pmp-benefits h4 {
+            color: var(--success-color);
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Software Tools */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .tool-card {
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: var(--card-shadow);
+            transition: all 0.3s ease;
+            position: relative;
+            border-left: 5px solid var(--primary-color);
+        }
+
+        .tool-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--hover-shadow);
+        }
+
+        .tool-card.low-end { border-left-color: #22c55e; }
+        .tool-card.mid-range { border-left-color: #f59e0b; }
+        .tool-card.high-end { border-left-color: #ef4444; }
+
+        .tool-card .icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .tool-card.low-end .icon { background: #22c55e; }
+        .tool-card.mid-range .icon { background: #f59e0b; }
+        .tool-card.high-end .icon { background: #ef4444; }
+
+        .tool-card h4 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 15px;
+        }
+
+        .tool-card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        /* Summary Box */
+        .summary-box {
+            background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 16px;
+            text-align: center;
+            margin: 50px 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .card {
+                padding: 25px;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            .tools-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        /* Visual Separator */
+        .visual-separator {
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            border-radius: 2px;
+            margin: 50px 0;
+        }
+
+        /* Scroll to Top */
+        .scroll-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--primary-color);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: var(--card-shadow);
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+        }
+
+        .scroll-top:hover {
+            background: var(--accent-color);
+            transform: translateY(-3px);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <div class="nav-container">
+        <nav class="nav">
+            <div class="nav-brand">
+                <i class="fas fa-certificate"></i> PM Profession Guide
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#pmi">PMI Institute</a></li>
+                <li><a href="#certification">PMP Certification</a></li>
+                <li><a href="#software">PM Software</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content fade-in-up">
+                <h1>Chapter 1.5: The Project Management Profession</h1>
+                <p class="subtitle">PMI, Certification, and Software Tools for Professional Success</p>
+                <div style="font-size: 4rem; margin-top: 20px;">
+                    <i class="fas fa-industry"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container main-content">
+        
+        <!-- Overview Section -->
+        <section class="section">
+            <div class="card fade-in-up">
+                <h2><i class="fas fa-info-circle" style="color: var(--primary-color);"></i> Understanding the Profession</h2>
+                
+                <p style="font-size: 1.2rem; line-height: 1.8; color: var(--text-light); margin-bottom: 30px;">
+                    To understand this line of work, it is helpful to briefly:
+                </p>
+
+                <div style="background: white; padding: 25px; border-radius: 12px; box-shadow: var(--card-shadow); margin: 30px 0;">
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+                        
+                        <div style="text-align: center; padding: 20px; border: 2px solid var(--border-color); border-radius: 8px;">
+                            <i class="fas fa-university" style="font-size: 2.5rem; color: var(--primary-color); margin-bottom: 15px;"></i>
+                            <h5 style="color: var(--text-dark); margin-bottom: 10px;">Learn About PMI</h5>
+                            <p style="font-size: 0.9rem; color: var(--text-light);">Understand the Project Management Institute and its certification services</p>
+                        </div>
+                        
+                        <div style="text-align: center; padding: 20px; border: 2px solid var(--border-color); border-radius: 8px;">
+                            <i class="fas fa-chart-line" style="font-size: 2.5rem; color: var(--success-color); margin-bottom: 15px;"></i>
+                            <h5 style="color: var(--text-dark); margin-bottom: 10px;">Examine Growth</h5>
+                            <p style="font-size: 0.9rem; color: var(--text-light);">Explore the remarkable growth in project management software and tools</p>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PMI Institute -->
+        <section id="pmi" class="section">
+            <div class="chapter-section">
+                <div class="chapter-title">
+                    1.5A The Project Management Institute (PMI)
+                </div>
+                
+                <div class="card fade-in-up">
+                    <p style="font-size: 1.1rem; margin-bottom: 30px; color: var(--text-light);">
+                        <strong>The Project Management Institute (PMI)</strong>, an international professional society for project managers founded in 1969, has continued to attract and retain members, reporting <strong>more than 449,000 members worldwide by late 2014</strong>[230].
+                    </p>
+
+                    <!-- PMI Statistics -->
+                    <div class="pmi-stats">
+                        <h4><i class="fas fa-chart-bar"></i> PMI Growth Statistics</h4>
+                        <p style="margin: 15px 0; line-height: 1.7;">
+                            PMI has experienced remarkable growth since its founding, becoming the world's leading professional organization for project management practitioners.
+                        </p>
+                        
+                        <div class="stats-grid">
+                            <div class="stat-item">
+                                <div class="stat-number">1969</div>
+                                <div class="stat-label">Founded</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">449k+</div>
+                                <div class="stat-label">Members (2014)</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">180+</div>
+                                <div class="stat-label">Countries</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">700k+</div>
+                                <div class="stat-label">Current PMPs</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3>Other Project Management Professional Societies:</h3>
+                    <p style="margin-bottom: 20px; color: var(--text-light);">
+                        Note that there are other project management professional societies, such as:
+                    </p>
+
+                    <div class="orgs-grid">
+                        <div class="org-card">
+                            <i class="fas fa-globe"></i>
+                            <h5>Project Management Institute (PMI)</h5>
+                            <p>Global leader in project management, founded in 1969. Offers PMP certification and PMBOK Guide as industry standards.</p>
+                        </div>
+                        
+                        <div class="org-card">
+                            <i class="fas fa-users"></i>
+                            <h5>International Project Management Association (IPMA)</h5>
+                            <p>Federation of national project management associations, promoting competence-based certification and development.</p>
+                        </div>
+                        
+                        <div class="org-card">
+                            <i class="fas fa-flag"></i>
+                            <h5>Association for Project Management (APM)</h5>
+                            <p>UK-based professional body for project management, offering qualifications and professional development resources.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PMP Certification -->
+        <section id="certification" class="section">
+            <div class="chapter-section">
+                <div class="chapter-title">
+                    1.5B Project Management Certification
+                </div>
+                
+                <div class="card fade-in-up">
+                    <p style="font-size: 1.1rem; margin-bottom: 30px; color: var(--text-light);">
+                        <strong>Professional certification is an important factor in recognizing and ensuring quality in a profession.</strong> PMI provides certification as a <strong>Project Management Professional (PMP)</strong> — someone who has documented sufficient project experience and education, agreed to follow the PMI code of professional conduct, and demonstrated knowledge of project management by passing a comprehensive examination[230].
+                    </p>
+
+                    <!-- Growth Chart -->
+                    <div class="chart-visual">
+                        <img src="https://i.ibb.co/zhpCnhW7/image.png" 
+                             alt="Growth in PMP Certification from 1993-2014 showing exponential increase from 1,000 to over 600,000 certified professionals" 
+                             class="chart-image" />
+                    </div>
+                    
+                    <p style="margin: 20px 0; color: var(--text-light); text-align: center;">
+                        <em>Growth in PMP Certification, 1993–2014: Demonstrating exponential growth from 1,000 to over 600,000 PMPs</em>
+                    </p>
+
+                    <!-- PMP Benefits -->
+                    <div class="pmp-benefits">
+                        <h4><i class="fas fa-trophy"></i> PMP Certification Benefits</h4>
+                        <p style="margin: 15px 0; line-height: 1.7;">
+                            <strong>Some companies require that all project managers be PMP certified.</strong> Any person with PMP certification can list, describe, and use the 10 project management knowledge areas effectively in their professional practice[235].
+                        </p>
+                        
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 20px;">
+                            
+                            <div style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                                <i class="fas fa-dollar-sign" style="font-size: 1.5rem; color: var(--success-color); margin-bottom: 10px;"></i>
+                                <h6 style="color: var(--text-dark); margin-bottom: 8px;">Higher Salary</h6>
+                                <p style="font-size: 0.9rem; color: var(--text-light);">PMPs earn 20-25% more than non-certified project managers</p>
+                            </div>
+                            
+                            <div style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                                <i class="fas fa-handshake" style="font-size: 1.5rem; color: var(--success-color); margin-bottom: 10px;"></i>
+                                <h6 style="color: var(--text-dark); margin-bottom: 8px;">Industry Recognition</h6>
+                                <p style="font-size: 0.9rem; color: var(--text-light);">Globally recognized credential demonstrating expertise</p>
+                            </div>
+                            
+                            <div style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                                <i class="fas fa-rocket" style="font-size: 1.5rem; color: var(--success-color); margin-bottom: 10px;"></i>
+                                <h6 style="color: var(--text-dark); margin-bottom: 8px;">Career Advancement</h6>
+                                <p style="font-size: 0.9rem; color: var(--text-light);">Opens doors to senior project management roles</p>
+                            </div>
+                            
+                        </div>
+                    </div>
+
+                    <h3>PMP Certification Requirements:</h3>
+                    <div style="background: white; padding: 25px; border-radius: 12px; box-shadow: var(--card-shadow); margin: 30px 0;">
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+                            
+                            <div>
+                                <h5 style="color: var(--primary-color); margin-bottom: 10px;"><i class="fas fa-graduation-cap"></i> Education & Experience</h5>
+                                <ul style="list-style: none; padding: 0;">
+                                    <li style="padding: 5px 0; position: relative; padding-left: 20px;">
+                                        <i class="fas fa-check" style="position: absolute; left: 0; color: var(--success-color); font-size: 0.8rem; top: 8px;"></i>
+                                        Bachelor's degree + 4,500 hours of project management experience
+                                    </li>
+                                    <li style="padding: 5px 0; position: relative; padding-left: 20px;">
+                                        <i class="fas fa-check" style="position: absolute; left: 0; color: var(--success-color); font-size: 0.8rem; top: 8px;"></i>
+                                        OR High school diploma + 7,500 hours of experience
+                                    </li>
+                                    <li style="padding: 5px 0; position: relative; padding-left: 20px;">
+                                        <i class="fas fa-check" style="position: absolute; left: 0; color: var(--success-color); font-size: 0.8rem; top: 8px;"></i>
+                                        35 hours of project management education
+                                    </li>
+                                </ul>
+                            </div>
+                            
+                            <div>
+                                <h5 style="color: var(--primary-color); margin-bottom: 10px;"><i class="fas fa-file-alt"></i> Examination & Ethics</h5>
+                                <ul style="list-style: none; padding: 0;">
+                                    <li style="padding: 5px 0; position: relative; padding-left: 20px;">
+                                        <i class="fas fa-check" style="position: absolute; left: 0; color: var(--success-color); font-size: 0.8rem; top: 8px;"></i>
+                                        Pass comprehensive 180-question exam
+                                    </li>
+                                    <li style="padding: 5px 0; position: relative; padding-left: 20px;">
+                                        <i class="fas fa-check" style="position: absolute; left: 0; color: var(--success-color); font-size: 0.8rem; top: 8px;"></i>
+                                        Agree to PMI Code of Professional Conduct
+                                    </li>
+                                    <li style="padding: 5px 0; position: relative; padding-left: 20px;">
+                                        <i class="fas fa-check" style="position: absolute; left: 0; color: var(--success-color); font-size: 0.8rem; top: 8px;"></i>
+                                        Maintain certification with 60 PDUs every 3 years
+                                    </li>
+                                </ul>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="visual-separator"></div>
+
+        <!-- Project Management Software -->
+        <section id="software" class="section">
+            <div class="chapter-section">
+                <div class="chapter-title">
+                    1.5C Project Management Software
+                </div>
+                
+                <div class="card fade-in-up">
+                    <p style="font-size: 1.1rem; margin-bottom: 30px; color: var(--text-light);">
+                        <strong>The software tools can be divided into three general categories</strong> based on functionality and price, providing options for organizations of all sizes and complexity requirements[239][241].
+                    </p>
+
+                    <div class="tools-grid">
+                        
+                        <!-- Low-End Tools -->
+                        <div class="tool-card low-end">
+                            <div class="icon">
+                                <i class="fas fa-chart-simple"></i>
+                            </div>
+                            <h4>Low-End Tools</h4>
+                            <p><strong>Provide basic project management features</strong> and generally cost less than $200 per user.</p>
+                            <p>Often recommended for <strong>small projects and single users</strong>, these tools allow users to create Gantt charts and manage basic project information effectively.</p>
+                            
+                            <div style="background: rgba(0,0,0,0.05); padding: 15px; border-radius: 8px; margin-top: 15px;">
+                                <h6 style="color: var(--text-dark); margin-bottom: 8px;"><i class="fas fa-tools"></i> Key Features:</h6>
+                                <ul style="list-style: none; padding: 0;">
+                                    <li style="font-size: 0.9rem; color: var(--text-light); margin-bottom: 5px; padding-left: 15px; position: relative;">
+                                        <i class="fas fa-check" style="position: absolute; left: 0; color: var(--success-color); font-size: 0.8rem; top: 3px;"></i>
+                                        Basic Gantt chart creation
+                                    </li>
+                                    <li style="font-size: 0.9rem; color: var(--text-light); margin-bottom: 5px; padding-left: 15px; position: relative;">
+                                        <i class="fas fa-check" style="position: absolute; left: 0; color: var(--success-color); font-size: 0.8rem; top: 3px;"></i>
+                                        Task scheduling and tracking
+                                    </li>
+                                    <li style="font-size: 0.9rem; color: var(--text-light); margin-bottom: 5px; padding-left: 15px; position: relative;">
+                                        <i class="fas fa-check" style="position: absolute; left: 0; color: var(--success-color); font-size: 0.8rem; top: 3px;"></i>
+                                        Simple resource allocation
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Mid-Range Tools -->
+                        <div class="tool-card mid-range">
+                            <div class="icon">
+                                <i class="fas fa-project-diagram"></i>
+                            </div>
+                            <h4>Mid-Range Tools</h4>
+                            <p><strong>Handle larger projects, multiple users, and multiple projects</strong> with prices ranging from about $200 to $1,000 per user.</p>
+                            <p>Can produce <strong>Gantt charts and network diagrams</strong> (lay out the tasks in the order in which they need to be completed).</p>
+                            
+                            <div style="background: rgba(0,0,0,0.05); padding: 15px; border-radius: 8px; margin-top: 15px;">
+                                <h6 style="color: var(--text-dark); margin-bottom: 8px;"><i class="fas fa-tools"></i> Key Features:</h6>
+                                <ul style="list-style: none; padding: 0;">
+                                    <li style="font-size: 0.9rem; color: var(--text-light); margin-bottom: 5px; padding-left: 15px; position: relative;">
+                                        <i class="fas fa-check" style="position: absolute; left: 0; color: var(--warning-color); font-size: 0.8rem; top: 3px;"></i>
+                                        Advanced Gantt charts with dependencies
+                                    </li>
+                                    <li style="font-size: 0.9rem; color: var(--text-light); margin-bottom: 5px; padding-left: 15px; position: relative;">
+                                        <i class="fas fa-check" style="position: absolute; left: 0; color: var(--warning-color); font-size: 0.8rem; top: 3px;"></i>
+                                        Network diagrams and critical path
+                                    </li>
+                                    <li style="font-size: 0.9rem; color: var(--text-light); margin-bottom: 5px; padding-left: 15px; position: relative;">
+                                        <i class="fas fa-check" style="position: absolute; left: 0; color: var(--warning-color); font-size: 0.8rem; top: 3px;"></i>
+                                        Multi-user collaboration
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- High-End Tools -->
+                        <div class="tool-card high-end">
+                            <div class="icon">
+                                <i class="fas fa-building"></i>
+                            </div>
+                            <h4>High-End Tools</h4>
+                            <p><strong>Referred to as enterprise project management software</strong> that provides robust capabilities to handle very large projects.</p>
+                            <p>They have <strong>enterprise and portfolio management functions</strong>, are generally licensed on a per-user basis, and are accessible via the Internet.</p>
+                            
+                            <div style="background: rgba(0,0,0,0.05); padding: 15px; border-radius: 8px; margin-top: 15px;">
+                                <h6 style="color: var(--text-dark); margin-bottom: 8px;"><i class="fas fa-tools"></i> Key Features:</h6>
+                                <ul style="list-style: none; padding: 0;">
+                                    <li style="font-size: 0.9rem; color: var(--text-light); margin-bottom: 5px; padding-left: 15px; position: relative;">
+                                        <i class="fas fa-check" style="position: absolute; left: 0; color: #ef4444; font-size: 0.8rem; top: 3px;"></i>
+                                        Enterprise portfolio management
+                                    </li>
+                                    <li style="font-size: 0.9rem; color: var(--text-light); margin-bottom: 5px; padding-left: 15px; position: relative;">
+                                        <i class="fas fa-check" style="position: absolute; left: 0; color: #ef4444; font-size: 0.8rem; top: 3px;"></i>
+                                        Resource management across projects
+                                    </li>
+                                    <li style="font-size: 0.9rem; color: var(--text-light); margin-bottom: 5px; padding-left: 15px; position: relative;">
+                                        <i class="fas fa-check" style="position: absolute; left: 0; color: #ef4444; font-size: 0.8rem; top: 3px;"></i>
+                                        Advanced reporting and analytics
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Gantt Chart Visual -->
+                    <h3>Gantt Charts - The Foundation of Project Scheduling:</h3>
+                    <div class="chart-visual">
+                        <img src="https://i.ibb.co/m5KzyNxR/image.png" 
+                             alt="Sample Gantt Chart showing project tasks, durations, start/finish dates, and team member assignments in calendar format" 
+                             class="chart-image" />
+                    </div>
+                    
+                    <p style="margin: 20px 0; color: var(--text-light); text-align: center;">
+                        <em>A Gantt chart is a standard format for displaying project schedule information by listing project activities and their corresponding start and finish dates in calendar form</em>
+                    </p>
+
+                    <!-- Network Diagram Visual -->
+                    <h3>Network Diagrams - Task Dependencies and Critical Path:</h3>
+                    <div class="chart-visual">
+                        <img src="https://www.monday.com/blog/wp-content/uploads/2021/02/pasted-image-0-54.png" 
+                             alt="Network diagram example showing task dependencies, critical path, and project workflow sequence" 
+                             class="chart-image" />
+                    </div>
+                    
+                    <p style="margin: 20px 0; color: var(--text-light); text-align: center;">
+                        <em>Network diagrams lay out tasks in the order they need to be completed, showing dependencies and the critical path</em>
+                    </p>
+
+                    <div style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(16, 185, 129, 0.05) 100%); border: 2px solid var(--accent-color); border-radius: 16px; padding: 25px; margin: 30px 0;">
+                        <h4 style="color: var(--accent-color); margin-bottom: 15px;"><i class="fas fa-lightbulb"></i> Choosing the Right Tool</h4>
+                        <p style="color: var(--text-dark); line-height: 1.7;">
+                            The choice between low-end, mid-range, and high-end tools depends on <strong>project complexity, team size, budget, and organizational needs</strong>. Software testing engineering students should start with low-end tools to understand basic concepts before progressing to enterprise-level solutions as they advance in their careers[237][238].
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Summary Section -->
+        <div class="visual-separator"></div>
+        
+        <div class="summary-box">
+            <h2><i class="fas fa-graduation-cap"></i> Project Management Profession Mastery!</h2>
+            <p style="font-size: 1.2rem; opacity: 0.95; margin: 20px 0;">
+                You now understand the professional landscape of project management, from PMI certification pathways to software tool categories. This knowledge positions you to pursue professional development and choose appropriate tools for project success across any industry.
+            </p>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 15px; margin-top: 30px;">
+                <div style="text-align: center; padding: 15px;">
+                    <div style="font-size: 2.5rem; font-weight: 800; margin-bottom: 5px;">700k+</div>
+                    <div style="font-size: 0.9rem; opacity: 0.9;">Certified PMPs</div>
+                </div>
+                <div style="text-align: center; padding: 15px;">
+                    <div style="font-size: 2.5rem; font-weight: 800; margin-bottom: 5px;">3</div>
+                    <div style="font-size: 0.9rem; opacity: 0.9;">Tool Categories</div>
+                </div>
+                <div style="text-align: center; padding: 15px;">
+                    <div style="font-size: 2.5rem; font-weight: 800; margin-bottom: 5px;">25%</div>
+                    <div style="font-size: 0.9rem; opacity: 0.9;">Salary Increase</div>
+                </div>
+                <div style="text-align: center; padding: 15px;">
+                    <div style="font-size: 2.5rem; font-weight: 800; margin-bottom: 5px;">∞</div>
+                    <div style="font-size: 0.9rem; opacity: 0.9;">Career Growth</div>
+                </div>
+            </div>
+            
+            <div style="margin-top: 30px;">
+                <p style="font-size: 1rem; opacity: 0.9;">
+                    <strong>Next Steps:</strong> Consider pursuing PMP certification, explore project management software tools, and engage with PMI professional development resources.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scroll to Top Button -->
+    <div class="scroll-top" id="scrollTop">
+        <i class="fas fa-chevron-up"></i>
+    </div>
+
+    <!-- JavaScript for Interactive Elements -->
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Animation on scroll observer
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in-up');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards and elements
+        document.querySelectorAll('.card, .tool-card, .org-card').forEach(element => {
+            observer.observe(element);
+        });
+
+        // Interactive tool cards
+        document.querySelectorAll('.tool-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-8px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Organization cards interaction
+        document.querySelectorAll('.org-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-5px) scale(1.05)';
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Scroll to top functionality
+        const scrollTopBtn = document.getElementById('scrollTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollTopBtn.classList.add('visible');
+            } else {
+                scrollTopBtn.classList.remove('visible');
+            }
+        });
+
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Chart images hover effects
+        document.querySelectorAll('.chart-image').forEach(img => {
+            img.addEventListener('mouseenter', () => {
+                img.style.transform = 'scale(1.02)';
+                img.style.boxShadow = '0 25px 50px rgba(0,0,0,0.15)';
+            });
+            
+            img.addEventListener('mouseleave', () => {
+                img.style.transform = 'scale(1)';
+                img.style.boxShadow = 'var(--card-shadow)';
+            });
+        });
+
+        // Stats animation on scroll
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const statNumber = entry.target.querySelector('.stat-number');
+                    if (statNumber && !statNumber.dataset.animated) {
+                        statNumber.dataset.animated = 'true';
+                        statNumber.style.transform = 'scale(1.2)';
+                        setTimeout(() => {
+                            statNumber.style.transform = 'scale(1)';
+                        }, 300);
+                    }
+                }
+            });
+        });
+
+        document.querySelectorAll('.stat-item').forEach(item => {
+            statsObserver.observe(item);
+        });
+
+        // Add click interactions for educational feedback
+        document.querySelectorAll('.tool-card').forEach(card => {
+            card.addEventListener('click', () => {
+                // Visual feedback on click
+                card.style.borderLeftWidth = '8px';
+                setTimeout(() => {
+                    card.style.borderLeftWidth = '5px';
+                }, 500);
+            });
+        });
+    </script>
+</body>
+</html>

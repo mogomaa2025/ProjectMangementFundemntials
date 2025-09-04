@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Management Fundamentals Summary</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #f8fafc;
+            --accent-color: #10b981;
+            --warning-color: #f59e0b;
+            --success-color: #22c55e;
+            --info-color: #3b82f6;
+            --text-dark: #1e293b;
+            --text-light: #64748b;
+            --border-color: #e2e8f0;
+            --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --card-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --hover-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--secondary-color);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: var(--bg-gradient);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="rgba(255,255,255,0.1)" points="0,0 1000,300 1000,1000 0,700"/></svg>');
+            background-size: cover;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .hero .subtitle {
+            font-size: 1.4rem;
+            opacity: 0.9;
+            margin-bottom: 40px;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 60px 0;
+        }
+
+        .section {
+            margin-bottom: 60px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: var(--card-shadow);
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--bg-gradient);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--hover-shadow);
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        h3 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 20px;
+        }
+
+        /* Key Points Grid */
+        .key-points {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .key-point {
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: var(--card-shadow);
+            transition: all 0.3s ease;
+            position: relative;
+            border-left: 5px solid var(--primary-color);
+        }
+
+        .key-point:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--hover-shadow);
+        }
+
+        .key-point:nth-child(1) { border-left-color: #3b82f6; }
+        .key-point:nth-child(2) { border-left-color: #10b981; }
+        .key-point:nth-child(3) { border-left-color: #f59e0b; }
+        .key-point:nth-child(4) { border-left-color: #ef4444; }
+        .key-point:nth-child(5) { border-left-color: #8b5cf6; }
+        .key-point:nth-child(6) { border-left-color: #06b6d4; }
+
+        .key-point .icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .key-point:nth-child(1) .icon { background: #3b82f6; }
+        .key-point:nth-child(2) .icon { background: #10b981; }
+        .key-point:nth-child(3) .icon { background: #f59e0b; }
+        .key-point:nth-child(4) .icon { background: #ef4444; }
+        .key-point:nth-child(5) .icon { background: #8b5cf6; }
+        .key-point:nth-child(6) .icon { background: #06b6d4; }
+
+        .key-point h4 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 15px;
+        }
+
+        .key-point p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Visual Elements */
+        .visual-section {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: var(--card-shadow);
+            margin: 40px 0;
+        }
+
+        .visual-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .visual-item {
+            text-align: center;
+        }
+
+        .visual-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.3s ease;
+        }
+
+        .visual-image:hover {
+            transform: scale(1.05);
+        }
+
+        .visual-caption {
+            margin-top: 15px;
+            font-size: 0.9rem;
+            color: var(--text-light);
+            font-style: italic;
+        }
+
+        /* Quick Stats */
+        .stats-overview {
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.1) 0%, rgba(34, 197, 94, 0.05) 100%);
+            border: 2px solid var(--success-color);
+            border-radius: 16px;
+            padding: 40px;
+            margin: 40px 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .stat-item {
+            text-align: center;
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--success-color);
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+
+        .stat-description {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            margin-top: 5px;
+        }
+
+        /* Learning Path */
+        .learning-path {
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.1) 0%, rgba(37, 99, 235, 0.05) 100%);
+            border: 2px solid var(--primary-color);
+            border-radius: 16px;
+            padding: 40px;
+            margin: 40px 0;
+        }
+
+        .path-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .path-step {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .path-step:hover {
+            transform: scale(1.05);
+        }
+
+        .step-number {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary-color);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .step-title {
+            color: var(--primary-color);
+            font-weight: 600;
+            margin: 15px 0 10px;
+        }
+
+        .step-description {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        /* Final Summary */
+        .final-summary {
+            background: var(--bg-gradient);
+            color: white;
+            padding: 50px;
+            border-radius: 16px;
+            text-align: center;
+            margin: 50px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .final-summary::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+        }
+
+        .summary-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .card {
+                padding: 25px;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            .key-points {
+                grid-template-columns: 1fr;
+            }
+
+            .visual-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        /* Visual Separator */
+        .visual-separator {
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            border-radius: 2px;
+            margin: 50px 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content fade-in-up">
+                <h1>Project Management Fundamentals</h1>
+                <p class="subtitle">Complete Summary: From Basic Concepts to Professional Practice</p>
+                <div style="font-size: 4rem; margin-top: 20px;">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container main-content">
+        
+        <!-- Core Concepts Summary -->
+        <section class="section">
+            <div class="card fade-in-up">
+                <h2><i class="fas fa-lightbulb" style="color: var(--primary-color);"></i> Core Project Management Concepts</h2>
+                
+                <div class="key-points">
+                    
+                    <!-- Project Definition -->
+                    <div class="key-point">
+                        <div class="icon">
+                            <i class="fas fa-project-diagram"></i>
+                        </div>
+                        <h4>What is a Project?</h4>
+                        <p><strong>A project is a temporary endeavor undertaken to create a unique product, service, or result.</strong> Projects are unique, temporary and developed incrementally; They require resources, have a sponsor, and involve uncertainty.</p>
+                    </div>
+
+                    <!-- Triple Constraint -->
+                    <div class="key-point">
+                        <div class="icon">
+                            <i class="fas fa-balance-scale"></i>
+                        </div>
+                        <h4>The Triple Constraint</h4>
+                        <p><strong>The triple constraint of project management refers to managing the scope, time and cost dimensions of a project.</strong> These three elements must be carefully balanced to ensure project success.</p>
+                    </div>
+
+                    <!-- Project Management Definition -->
+                    <div class="key-point">
+                        <div class="icon">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                        <h4>Project Management</h4>
+                        <p><strong>Project management is the application of knowledge, skills, tools and techniques to project activities to meet project requirements.</strong> It encompasses a comprehensive framework for successful project delivery.</p>
+                    </div>
+
+                    <!-- Framework Components -->
+                    <div class="key-point">
+                        <div class="icon">
+                            <i class="fas fa-sitemap"></i>
+                        </div>
+                        <h4>PM Framework</h4>
+                        <p><strong>A framework for project management includes the project stakeholders, project management knowledge areas, and project management tools and techniques.</strong> These elements work together systematically.</p>
+                    </div>
+
+                    <!-- Programs -->
+                    <div class="key-point">
+                        <div class="icon">
+                            <i class="fas fa-layer-group"></i>
+                        </div>
+                        <h4>Programs</h4>
+                        <p><strong>A program is a group of related projects, subprograms, and program activities managed in a coordinated way to obtain benefits.</strong> Programs deliver value that individual projects cannot achieve alone.</p>
+                    </div>
+
+                    <!-- Portfolio Management -->
+                    <div class="key-point">
+                        <div class="icon">
+                            <i class="fas fa-briefcase"></i>
+                        </div>
+                        <h4>Portfolio Management</h4>
+                        <p><strong>Project portfolio management involves organizing and managing projects and programs that contribute to the entire enterprise's success.</strong> It ensures strategic alignment and maximum business value.</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    
+
+        <!-- Quick Statistics Overview -->
+        <section class="section">
+            <div class="stats-overview fade-in-up">
+                <h2 style="text-align: center; color: var(--success-color); margin-bottom: 20px;">
+                    <i class="fas fa-chart-bar"></i> Key Statistics & Numbers
+                </h2>
+                <p style="text-align: center; color: var(--text-dark); font-size: 1.1rem;">
+                    Essential metrics that define the project management profession
+                </p>
+                
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-number">6</div>
+                        <div class="stat-label">Project Attributes</div>
+                        <div class="stat-description">Key characteristics that define every project</div>
+                    </div>
+                    
+                    <div class="stat-item">
+                        <div class="stat-number">3</div>
+                        <div class="stat-label">Triple Constraints</div>
+                        <div class="stat-description">Scope, Time, and Cost dimensions</div>
+                    </div>
+                    
+                    <div class="stat-item">
+                        <div class="stat-number">10</div>
+                        <div class="stat-label">Knowledge Areas</div>
+                        <div class="stat-description">PMBOK-defined competency areas</div>
+                    </div>
+                    
+                    <div class="stat-item">
+                        <div class="stat-number">5</div>
+                        <div class="stat-label">Process Groups</div>
+                        <div class="stat-description">Initiating, Planning, Executing, Monitoring, Closing</div>
+                    </div>
+                    
+                    <div class="stat-item">
+                        <div class="stat-number">700k+</div>
+                        <div class="stat-label">Certified PMPs</div>
+                        <div class="stat-description">Global PMP certification holders</div>
+                    </div>
+                    
+                    <div class="stat-item">
+                        <div class="stat-number">25%</div>
+                        <div class="stat-label">Salary Increase</div>
+                        <div class="stat-description">Average boost with PMP certification</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Project Manager Success Factors -->
+        <section class="section">
+            <div class="card fade-in-up">
+                <h2><i class="fas fa-user-tie" style="color: var(--primary-color);"></i> Project Manager Success Factors</h2>
+                
+                <p style="font-size: 1.1rem; margin-bottom: 30px; color: var(--text-light);">
+                    <strong>Project managers play a key role in helping projects succeed. They must possess many skills in project management and their application area, such as IT.</strong>
+                </p>
+
+                <div style="background: white; padding: 30px; border-radius: 12px; box-shadow: var(--card-shadow); margin: 30px 0;">
+                    <h3 style="text-align: center; margin-bottom: 25px; color: var(--primary-color);">Essential PM Skills & Competencies</h3>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px;">
+                        
+                        <div style="text-align: center; padding: 20px; border: 2px solid var(--border-color); border-radius: 10px; transition: all 0.3s ease;" onmouseover="this.style.borderColor='var(--primary-color)'" onmouseout="this.style.borderColor='var(--border-color)'">
+                            <i class="fas fa-clipboard-list" style="font-size: 2rem; color: var(--primary-color); margin-bottom: 15px;"></i>
+                            <h5 style="color: var(--text-dark); margin-bottom: 10px;">Be Highly Organized</h5>
+                            <p style="font-size: 0.9rem; color: var(--text-light);">Manage complex information and multiple tasks effectively</p>
+                        </div>
+                        
+                        <div style="text-align: center; padding: 20px; border: 2px solid var(--border-color); border-radius: 10px; transition: all 0.3s ease;" onmouseover="this.style.borderColor='var(--primary-color)'" onmouseout="this.style.borderColor='var(--border-color)'">
+                            <i class="fas fa-crown" style="font-size: 2rem; color: var(--primary-color); margin-bottom: 15px;"></i>
+                            <h5 style="color: var(--text-dark); margin-bottom: 10px;">Take Charge & Lead</h5>
+                            <p style="font-size: 0.9rem; color: var(--text-light);">Inspire teams and make decisive decisions</p>
+                        </div>
+                        
+                        <div style="text-align: center; padding: 20px; border: 2px solid var(--border-color); border-radius: 10px; transition: all 0.3s ease;" onmouseover="this.style.borderColor='var(--primary-color)'" onmouseout="this.style.borderColor='var(--border-color)'">
+                            <i class="fas fa-comments" style="font-size: 2rem; color: var(--primary-color); margin-bottom: 15px;"></i>
+                            <h5 style="color: var(--text-dark); margin-bottom: 10px;">Effective Communication</h5>
+                            <p style="font-size: 0.9rem; color: var(--text-light);">Clear stakeholder alignment and team coordination</p>
+                        </div>
+                        
+                        <div style="text-align: center; padding: 20px; border: 2px solid var(--border-color); border-radius: 10px; transition: all 0.3s ease;" onmouseover="this.style.borderColor='var(--primary-color)'" onmouseout="this.style.borderColor='var(--border-color)'">
+                            <i class="fas fa-handshake" style="font-size: 2rem; color: var(--primary-color); margin-bottom: 15px;"></i>
+                            <h5 style="color: var(--text-dark); margin-bottom: 10px;">Negotiation Skills</h5>
+                            <p style="font-size: 0.9rem; color: var(--text-light);">Balance competing interests and achieve win-win outcomes</p>
+                        </div>
+                        
+                        <div style="text-align: center; padding: 20px; border: 2px solid var(--border-color); border-radius: 10px; transition: all 0.3s ease;" onmouseover="this.style.borderColor='var(--primary-color)'" onmouseout="this.style.borderColor='var(--border-color)'">
+                            <i class="fas fa-search" style="font-size: 2rem; color: var(--primary-color); margin-bottom: 15px;"></i>
+                            <h5 style="color: var(--text-dark); margin-bottom: 10px;">Detail-Oriented</h5>
+                            <p style="font-size: 0.9rem; color: var(--text-light);">Ensure quality standards and identify risks early</p>
+                        </div>
+                        
+                        <div style="text-align: center; padding: 20px; border: 2px solid var(--border-color); border-radius: 10px; transition: all 0.3s ease;" onmouseover="this.style.borderColor='var(--primary-color)'" onmouseout="this.style.borderColor='var(--border-color)'">
+                            <i class="fas fa-lightbulb" style="font-size: 2rem; color: var(--primary-color); margin-bottom: 15px;"></i>
+                            <h5 style="color: var(--text-dark); margin-bottom: 10px;">Problem Solving</h5>
+                            <p style="font-size: 0.9rem; color: var(--text-light);">Quickly recognize issues and implement solutions</p>
+                        </div>
+                        
+                        <div style="text-align: center; padding: 20px; border: 2px solid var(--border-color); border-radius: 10px; transition: all 0.3s ease;" onmouseover="this.style.borderColor='var(--primary-color)'" onmouseout="this.style.borderColor='var(--border-color)'">
+                            <i class="fas fa-cogs" style="font-size: 2rem; color: var(--primary-color); margin-bottom: 15px;"></i>
+                            <h5 style="color: var(--text-dark); margin-bottom: 10px;">Technical Skills</h5>
+                            <p style="font-size: 0.9rem; color: var(--text-light);">Industry knowledge and PM tools proficiency</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Learning Path for Students -->
+        <section class="section">
+            <div class="learning-path fade-in-up">
+                <h2 style="text-align: center; color: var(--primary-color); margin-bottom: 20px;">
+                    <i class="fas fa-road"></i> Your Project Management Learning Journey
+                </h2>
+                <p style="text-align: center; color: var(--text-dark); font-size: 1.1rem; margin-bottom: 10px;">
+                    Recommended pathway for software testing engineering students
+                </p>
+                
+                <div class="path-steps">
+                    <div class="path-step">
+                        <div class="step-number">1</div>
+                        <div class="step-title">Master Fundamentals</div>
+                        <div class="step-description">Understand projects, constraints, and basic PM concepts</div>
+                    </div>
+                    
+                    <div class="path-step">
+                        <div class="step-number">2</div>
+                        <div class="step-title">Learn Tools</div>
+                        <div class="step-description">Practice with Gantt charts and project management software</div>
+                    </div>
+                    
+                    <div class="path-step">
+                        <div class="step-number">3</div>
+                        <div class="step-title">Develop Skills</div>
+                        <div class="step-description">Build leadership, communication, and technical competencies</div>
+                    </div>
+                    
+                    <div class="path-step">
+                        <div class="step-number">4</div>
+                        <div class="step-title">Gain Experience</div>
+                        <div class="step-description">Apply knowledge through internships and projects</div>
+                    </div>
+                    
+                    <div class="path-step">
+                        <div class="step-number">5</div>
+                        <div class="step-title">Pursue Certification</div>
+                        <div class="step-description">Work toward PMP or other professional credentials</div>
+                    </div>
+                    
+                    <div class="path-step">
+                        <div class="step-number">6</div>
+                        <div class="step-title">Continuous Growth</div>
+                        <div class="step-description">Stay updated with industry trends and methodologies</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="visual-separator"></div>
+
+        <!-- Final Summary -->
+        <div class="final-summary fade-in-up">
+            <div class="summary-content" >
+                <h2  style="color: #ffffff;"><i class="fas fa-trophy"></i >  Congratulations! You've Mastered Project Management Fundamentals</h2>
+                
+                <p style="font-size: 1.3rem; margin: 25px 0; opacity: 0.95;">
+                    You now possess a comprehensive understanding of project management principles, from basic project definitions to advanced portfolio management concepts. This knowledge foundation prepares you for successful project leadership in any industry.
+                </p>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 20px; margin: 40px 0;">
+                    <div style="text-align: center;">
+                        <div style="font-size: 3rem; margin-bottom: 10px;"><i class="fas fa-project-diagram"></i></div>
+                        <div style="font-size: 0.9rem; opacity: 0.9;">Project Concepts</div>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="font-size: 3rem; margin-bottom: 10px;"><i class="fas fa-users"></i></div>
+                        <div style="font-size: 0.9rem; opacity: 0.9;">Stakeholder Management</div>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="font-size: 3rem; margin-bottom: 10px;"><i class="fas fa-brain"></i></div>
+                        <div style="font-size: 0.9rem; opacity: 0.9;">Knowledge Areas</div>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="font-size: 3rem; margin-bottom: 10px;"><i class="fas fa-tools"></i></div>
+                        <div style="font-size: 0.9rem; opacity: 0.9;">PM Tools & Software</div>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="font-size: 3rem; margin-bottom: 10px;"><i class="fas fa-certificate"></i></div>
+                        <div style="font-size: 0.9rem; opacity: 0.9;">Professional Growth</div>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 40px; padding: 25px; background: rgba(255,255,255,0.1); border-radius: 12px;">
+                    <h3 style="color: white; margin-bottom: 15px;">Ready for the Next Level?</h3>
+                    <p style="font-size: 1rem; opacity: 0.9;">
+                        Apply these concepts in real projects, pursue PMP certification, explore Agile methodologies, 
+                        and continue building your expertise in this rewarding and rapidly growing profession.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript for Interactive Elements -->
+    <script>
+        // Animation on scroll observer
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in-up');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('.card, .visual-section, .stats-overview, .learning-path, .final-summary').forEach(element => {
+            observer.observe(element);
+        });
+
+        // Interactive key points
+        document.querySelectorAll('.key-point').forEach(point => {
+            point.addEventListener('mouseenter', () => {
+                point.style.transform = 'translateY(-8px) scale(1.02)';
+            });
+            
+            point.addEventListener('mouseleave', () => {
+                point.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Interactive visual images
+        document.querySelectorAll('.visual-image').forEach(img => {
+            img.addEventListener('mouseenter', () => {
+                img.style.transform = 'scale(1.05)';
+                img.style.boxShadow = '0 25px 50px rgba(0,0,0,0.15)';
+            });
+            
+            img.addEventListener('mouseleave', () => {
+                img.style.transform = 'scale(1)';
+                img.style.boxShadow = 'var(--card-shadow)';
+            });
+        });
+
+        // Animate stats on scroll
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const statNumbers = entry.target.querySelectorAll('.stat-number');
+                    statNumbers.forEach((stat, index) => {
+                        setTimeout(() => {
+                            stat.style.transform = 'scale(1.2)';
+                            setTimeout(() => {
+                                stat.style.transform = 'scale(1)';
+                            }, 200);
+                        }, index * 100);
+                    });
+                }
+            });
+        });
+
+        document.querySelectorAll('.stats-overview').forEach(section => {
+            statsObserver.observe(section);
+        });
+
+        // Path steps animation
+        document.querySelectorAll('.path-step').forEach((step, index) => {
+            step.addEventListener('mouseenter', () => {
+                step.style.transform = 'scale(1.1) translateY(-5px)';
+                step.style.boxShadow = '0 15px 30px rgba(37, 99, 235, 0.2)';
+            });
+            
+            step.addEventListener('mouseleave', () => {
+                step.style.transform = 'scale(1) translateY(0)';
+                step.style.boxShadow = 'none';
+            });
+        });
+    </script>
+</body>
+</html>

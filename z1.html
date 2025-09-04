@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Management Fundamentals | Complete Guide</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #f8fafc;
+            --accent-color: #10b981;
+            --warning-color: #f59e0b;
+            --success-color: #22c55e;
+            --info-color: #3b82f6;
+            --text-dark: #1e293b;
+            --text-light: #64748b;
+            --border-color: #e2e8f0;
+            --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --card-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --hover-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --scope-color: #8b5cf6;
+            --time-color: #06b6d4;
+            --cost-color: #f59e0b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--secondary-color);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        .nav-container {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .nav-brand {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--text-light);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-menu a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: var(--bg-gradient);
+            color: white;
+            padding: 120px 0 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="rgba(255,255,255,0.1)" points="0,0 1000,300 1000,1000 0,700"/></svg>');
+            background-size: cover;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .hero .subtitle {
+            font-size: 1.4rem;
+            opacity: 0.9;
+            margin-bottom: 40px;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 60px 0;
+        }
+
+        .section {
+            margin-bottom: 80px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: var(--card-shadow);
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--bg-gradient);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--hover-shadow);
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        h3 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 20px;
+        }
+
+        /* Chapter Sections */
+        .chapter-section {
+            border-left: 4px solid var(--primary-color);
+            padding-left: 30px;
+            margin: 50px 0;
+        }
+
+        .chapter-title {
+            background: var(--bg-gradient);
+            color: white;
+            padding: 20px 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        /* Definition Boxes */
+        .definition-box {
+            background: var(--bg-gradient);
+            color: white;
+            padding: 30px;
+            border-radius: 16px;
+            font-size: 1.2rem;
+            text-align: center;
+            margin: 30px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .definition-box::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+        }
+
+        /* Project Attributes Grid */
+        .attributes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .attribute-card {
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: var(--card-shadow);
+            transition: all 0.3s ease;
+            position: relative;
+            border-left: 5px solid var(--primary-color);
+        }
+
+        .attribute-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--hover-shadow);
+        }
+
+        .attribute-card:nth-child(1) { border-left-color: #3b82f6; }
+        .attribute-card:nth-child(2) { border-left-color: #10b981; }
+        .attribute-card:nth-child(3) { border-left-color: #f59e0b; }
+        .attribute-card:nth-child(4) { border-left-color: #8b5cf6; }
+        .attribute-card:nth-child(5) { border-left-color: #ef4444; }
+        .attribute-card:nth-child(6) { border-left-color: #84cc16; }
+
+        .attribute-card .icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .attribute-card:nth-child(1) .icon { background: #3b82f6; }
+        .attribute-card:nth-child(2) .icon { background: #10b981; }
+        .attribute-card:nth-child(3) .icon { background: #f59e0b; }
+        .attribute-card:nth-child(4) .icon { background: #8b5cf6; }
+        .attribute-card:nth-child(5) .icon { background: #ef4444; }
+        .attribute-card:nth-child(6) .icon { background: #84cc16; }
+
+        .attribute-card h4 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 15px;
+        }
+
+        .attribute-card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .example-box {
+            background: rgba(0,0,0,0.05);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+
+        .example-box h5 {
+            font-size: 1rem;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .example-box p {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin: 0;
+        }
+
+        /* Triple Constraint Visual */
+        .constraint-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 40px 0;
+            position: relative;
+        }
+
+        .constraint-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 16px;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.3s ease;
+        }
+
+        .constraint-image:hover {
+            transform: scale(1.02);
+        }
+
+        /* Interactive Triangle */
+        .interactive-triangle {
+            width: 350px;
+            height: 350px;
+            position: relative;
+            margin: 20px auto;
+        }
+
+        .triangle-svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .triangle-side {
+            fill: none;
+            stroke-width: 4;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .triangle-side.scope { stroke: var(--scope-color); }
+        .triangle-side.time { stroke: var(--time-color); }
+        .triangle-side.cost { stroke: var(--cost-color); }
+
+        .triangle-side:hover {
+            stroke-width: 6;
+            filter: drop-shadow(0 0 10px currentColor);
+        }
+
+        .constraint-label {
+            position: absolute;
+            font-weight: 600;
+            font-size: 1.1rem;
+            text-align: center;
+            padding: 8px 16px;
+            border-radius: 20px;
+            color: white;
+            transform: translate(-50%, -50%);
+            transition: all 0.3s ease;
+        }
+
+        .constraint-label.scope {
+            background: var(--scope-color);
+            top: 15%;
+            left: 50%;
+        }
+
+        .constraint-label.time {
+            background: var(--time-color);
+            top: 85%;
+            left: 25%;
+        }
+
+        .constraint-label.cost {
+            background: var(--cost-color);
+            top: 85%;
+            left: 75%;
+        }
+
+        .constraint-label:hover {
+            transform: translate(-50%, -50%) scale(1.1);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        /* Success Definition Box */
+        .success-definition {
+            background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 16px;
+            text-align: center;
+            margin: 40px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .success-definition::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+        }
+
+        .success-definition h3 {
+            color: white;
+            margin-bottom: 15px;
+        }
+
+        /* Additional Factors */
+        .additional-factors {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+
+        .factor-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+            text-align: center;
+            transition: all 0.3s ease;
+            border-top: 4px solid var(--primary-color);
+        }
+
+        .factor-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--hover-shadow);
+        }
+
+        .factor-card:nth-child(1) { border-top-color: #22c55e; }
+        .factor-card:nth-child(2) { border-top-color: #f59e0b; }
+        .factor-card:nth-child(3) { border-top-color: #ef4444; }
+
+        .factor-card i {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .factor-card:nth-child(1) i { color: #22c55e; }
+        .factor-card:nth-child(2) i { color: #f59e0b; }
+        .factor-card:nth-child(3) i { color: #ef4444; }
+
+        .factor-card h5 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--text-dark);
+        }
+
+        .factor-card p {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            line-height: 1.5;
+        }
+
+        /* Quick Reference Cards */
+        .quick-reference {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .quick-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+            text-align: center;
+            transition: all 0.3s ease;
+            border-top: 4px solid var(--primary-color);
+        }
+
+        .quick-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--hover-shadow);
+        }
+
+        .quick-card i {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .quick-card h5 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--text-dark);
+        }
+
+        .quick-card p {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        /* Summary Box */
+        .summary-box {
+            background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 16px;
+            text-align: center;
+            margin: 50px 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .card {
+                padding: 25px;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            .attributes-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .interactive-triangle {
+                width: 280px;
+                height: 280px;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        /* Visual Separator */
+        .visual-separator {
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            border-radius: 2px;
+            margin: 50px 0;
+        }
+
+        /* Scroll to Top */
+        .scroll-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--primary-color);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: var(--card-shadow);
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+        }
+
+        .scroll-top:hover {
+            background: var(--accent-color);
+            transform: translateY(-3px);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <div class="nav-container">
+        <nav class="nav">
+            <div class="nav-brand">
+                <i class="fas fa-project-diagram"></i> Project Management Guide
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#what-is-project">What is a Project?</a></li>
+                <li><a href="#project-attributes">Attributes</a></li>
+                <li><a href="#project-constraints">Constraints</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content fade-in-up">
+                <h1>Project Management Fundamentals</h1>
+                <p class="subtitle">Understanding Projects, Attributes, and the Triple Constraint</p>
+                <div style="font-size: 4rem; margin-top: 20px;">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container main-content">
+        
+        <!-- Chapter 1.1: What is a Project? -->
+        <section id="what-is-project" class="section">
+            <div class="chapter-section">
+                <div class="chapter-title">
+                    1.1 What is a Project?
+                </div>
+                
+                <div class="card fade-in-up">
+                    <div class="definition-box">
+                        <div style="position: relative; z-index: 2;">
+                            A project is <strong>"a temporary endeavor undertaken to create a unique product, service, or result."</strong>
+                        </div>
+                    </div>
+
+                    <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-light); margin-bottom: 30px;">
+                        <strong>Operations, on the other hand, is work done in organizations to sustain the business.</strong> Projects are different from operations in that they end when their objectives have been reached or the project has been terminated[161][162].
+                    </p>
+
+                    <h3>Key Distinctions: Projects vs. Operations</h3>
+                    <div class="quick-reference">
+                        <div class="quick-card">
+                            <i class="fas fa-play-circle"></i>
+                            <h5>Projects</h5>
+                            <p>Temporary endeavors with defined start and end dates, creating unique deliverables</p>
+                        </div>
+                        
+                        <div class="quick-card">
+                            <i class="fas fa-sync-alt"></i>
+                            <h5>Operations</h5>
+                            <p>Ongoing work that sustains the business through repetitive, continuous activities</p>
+                        </div>
+                        
+                        <div class="quick-card">
+                            <i class="fas fa-flag-checkered"></i>
+                            <h5>Project Completion</h5>
+                            <p>Projects end when objectives are achieved or when terminated</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Chapter 1.1A: Project Attributes -->
+        <section id="project-attributes" class="section">
+            <div class="chapter-section">
+                <div class="chapter-title">
+                    1.1A Project Attributes
+                </div>
+                
+                <div class="card fade-in-up">
+                    <p style="font-size: 1.1rem; margin-bottom: 30px; color: var(--text-light);">
+                        <strong>Projects come in all shapes and sizes.</strong> The following attributes help define a project further:
+                    </p>
+
+                    <div class="attributes-grid">
+                        
+                        <!-- Unique Purpose -->
+                        <div class="attribute-card">
+                            <div class="icon">
+                                <i class="fas fa-bullseye"></i>
+                            </div>
+                            <h4>Unique Purpose</h4>
+                            <p><strong>A project has a unique purpose.</strong> Every project should have a well-defined objective. Projects result in a unique product, service, or result.</p>
+                            
+                            <div class="example-box">
+                                <h5><i class="fas fa-lightbulb"></i> Example:</h5>
+                                <p>To create a collaborative report with ideas from people throughout the company.</p>
+                            </div>
+                        </div>
+
+                        <!-- Temporary Nature -->
+                        <div class="attribute-card">
+                            <div class="icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <h4>Temporary Nature</h4>
+                            <p><strong>A project is temporary.</strong> A project has a definite beginning and end.</p>
+                            
+                            <div class="example-box">
+                                <h5><i class="fas fa-calendar-alt"></i> Example:</h5>
+                                <p>In the IT collaboration project, Anne might form a team to work immediately and expect a report and executive presentation in one month.</p>
+                            </div>
+                        </div>
+
+                        <!-- Progressive Elaboration -->
+                        <div class="attribute-card">
+                            <div class="icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <h4>Progressive Elaboration</h4>
+                            <p><strong>A project is developed using progressive elaboration.</strong> Details become clearer as the project progresses through phases.</p>
+                            
+                            <div class="example-box">
+                                <h5><i class="fas fa-cogs"></i> Example:</h5>
+                                <p>If initial ideas don't clearly address business strategy, the team might prepare a questionnaire to improve input quality.</p>
+                            </div>
+                        </div>
+
+                        <!-- Resource Requirements -->
+                        <div class="attribute-card">
+                            <div class="icon">
+                                <i class="fas fa-cubes"></i>
+                            </div>
+                            <h4>Resource Requirements</h4>
+                            <p><strong>A project requires resources, often from various areas.</strong> Resources include people, hardware, software, and other assets.</p>
+                            
+                            <div class="example-box">
+                                <h5><i class="fas fa-users"></i> Example:</h5>
+                                <p>For the IT collaboration project, people from IT, marketing, sales, distribution, and other areas would need to work together.</p>
+                            </div>
+                        </div>
+
+                        <!-- Primary Sponsor -->
+                        <div class="attribute-card">
+                            <div class="icon">
+                                <i class="fas fa-user-tie"></i>
+                            </div>
+                            <h4>Primary Customer/Sponsor</h4>
+                            <p><strong>A project should have a primary customer or sponsor.</strong> The project sponsor usually provides direction and funding. Executive support is crucial to project success.</p>
+                            
+                            <div class="example-box">
+                                <h5><i class="fas fa-handshake"></i> Example:</h5>
+                                <p>The sponsor of a project to improve online product sales would be the vice president of sales.</p>
+                            </div>
+                        </div>
+
+                        <!-- Uncertainty -->
+                        <div class="attribute-card">
+                            <div class="icon">
+                                <i class="fas fa-question-circle"></i>
+                            </div>
+                            <h4>Involves Uncertainty</h4>
+                            <p><strong>A project involves uncertainty.</strong> Because every project is unique, it can be difficult to define objectives clearly, estimate duration, or determine costs.</p>
+                            
+                            <div class="example-box">
+                                <h5><i class="fas fa-exclamation-triangle"></i> Example:</h5>
+                                <p>External factors cause uncertainty, such as a project team member needing unplanned time off.</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="visual-separator"></div>
+
+        <!-- Chapter 1.1B: Project Constraints -->
+        <section id="project-constraints" class="section">
+            <div class="chapter-section">
+                <div class="chapter-title">
+                    1.1B Project Constraints (The Triple Constraint)
+                </div>
+                
+                <div class="card fade-in-up">
+                    <p style="font-size: 1.1rem; margin-bottom: 30px; color: var(--text-light);">
+                        To create a successful project, a project manager must consider the <strong>triple constraint</strong> - the three fundamental limitations that define project boundaries[161][163]:
+                    </p>
+
+                    <!-- Triple Constraint Image -->
+                    <div class="constraint-visual">
+                        <img src="https://i.postimg.cc/yxrWk5YR/image.png" 
+                             alt="Triple Constraint Diagram showing Scope, Time, and Cost as three sides of a cube with a target at the center representing successful project management" 
+                             class="constraint-image" />
+                    </div>
+
+                    <div class="success-definition">
+                        <div style="position: relative; z-index: 2;">
+                            <h3><i class="fas fa-trophy"></i> Success Definition</h3>
+                            <p style="font-size: 1.1rem; opacity: 0.95;">
+                                <strong>Successful project management means meeting all three goals (scope, time, and cost)—and satisfying the project's sponsor!</strong>
+                            </p>
+                        </div>
+                    </div>
+
+                    <h3>The Three Core Constraints:</h3>
+                    <div class="attributes-grid">
+                        
+                        <!-- Scope Constraint -->
+                        <div class="attribute-card">
+                            <div class="icon">
+                                <i class="fas fa-tasks"></i>
+                            </div>
+                            <h4>Scope</h4>
+                            <p><strong>What work will be done as part of the project?</strong> What unique product, service, or result does the customer or sponsor expect from the project?</p>
+                            
+                            <div class="example-box">
+                                <h5><i class="fas fa-list"></i> Key Questions:</h5>
+                                <p>What deliverables are included? What are the project boundaries? Who defines scope changes?</p>
+                            </div>
+                        </div>
+
+                        <!-- Time Constraint -->
+                        <div class="attribute-card">
+                            <div class="icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <h4>Time</h4>
+                            <p><strong>How long should it take to complete the project?</strong> What is the project's schedule? How will the team track actual schedule performance?</p>
+                            
+                            <div class="example-box">
+                                <h5><i class="fas fa-calendar"></i> Key Questions:</h5>
+                                <p>What is the deadline? What are key milestones? Who can approve schedule changes?</p>
+                            </div>
+                        </div>
+
+                        <!-- Cost Constraint -->
+                        <div class="attribute-card">
+                            <div class="icon">
+                                <i class="fas fa-dollar-sign"></i>
+                            </div>
+                            <h4>Cost</h4>
+                            <p><strong>What should it cost to complete the project?</strong> What is the project's budget? Who can authorize changes to the budget?</p>
+                            
+                            <div class="example-box">
+                                <h5><i class="fas fa-calculator"></i> Key Questions:</h5>
+                                <p>What is the total budget? How will costs be tracked? Who has budget authority?</p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Interactive Triangle -->
+                    <div class="constraint-visual">
+                        <div class="interactive-triangle">
+                            <svg class="triangle-svg" viewBox="0 0 350 350">
+                                <!-- Triangle sides -->
+                                <line x1="175" y1="50" x2="100" y2="280" class="triangle-side scope" stroke-linecap="round"/>
+                                <line x1="175" y1="50" x2="250" y2="280" class="triangle-side time" stroke-linecap="round"/>
+                                <line x1="100" y1="280" x2="250" y2="280" class="triangle-side cost" stroke-linecap="round"/>
+                                
+                                <!-- Center target -->
+                                <circle cx="175" cy="203" r="25" fill="#2563eb" opacity="0.8"/>
+                                <circle cx="175" cy="203" r="16" fill="white" opacity="0.9"/>
+                                <circle cx="175" cy="203" r="8" fill="#2563eb"/>
+                            </svg>
+                            
+                            <!-- Interactive labels -->
+                            <div class="constraint-label scope">Scope</div>
+                            <div class="constraint-label time">Time</div>
+                            <div class="constraint-label cost">Cost</div>
+                        </div>
+                    </div>
+
+                    <div style="background: linear-gradient(135deg, rgba(37, 99, 235, 0.1) 0%, rgba(37, 99, 235, 0.05) 100%); border: 2px solid var(--primary-color); border-radius: 16px; padding: 25px; margin: 30px 0;">
+                        <h4 style="color: var(--primary-color); margin-bottom: 15px;"><i class="fas fa-balance-scale"></i> Managing Trade-offs</h4>
+                        <p style="color: var(--text-dark); line-height: 1.7;">
+                            <strong>Managing the triple constraint involves making trade-offs</strong> between scope, time, and cost goals for a project[161][162]. Changes to one constraint will inevitably impact the other two, requiring careful balance and stakeholder communication.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Additional Constraint Factors -->
+        <section class="section">
+            <div class="card fade-in-up">
+                <h2><i class="fas fa-plus-circle" style="color: var(--primary-color);"></i> Additional Constraint Factors</h2>
+                
+                <p style="font-size: 1.1rem; margin-bottom: 30px; color: var(--text-light);">
+                    <strong>Other elements can also play significant roles</strong> beyond the traditional triple constraint:
+                </p>
+
+                <div class="additional-factors">
+                    
+                    <div class="factor-card">
+                        <i class="fas fa-medal"></i>
+                        <h5>Quality</h5>
+                        <p><strong>Quality is often a key factor in projects</strong>, as is customer or sponsor satisfaction. Quality standards must be maintained while balancing the triple constraint.</p>
+                    </div>
+                    
+                    <div class="factor-card">
+                        <i class="fas fa-users"></i>
+                        <h5>Resources</h5>
+                        <p><strong>Resources are the main concern.</strong> For example, the entertainment industry often needs particular actors for movies or television shows.</p>
+                    </div>
+                    
+                    <div class="factor-card">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <h5>Risk</h5>
+                        <p><strong>Risk can also affect major project decisions.</strong> A company might wait to start a project until the risks are at an acceptable level.</p>
+                    </div>
+                    
+                </div>
+
+                <div style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(16, 185, 129, 0.05) 100%); border: 2px solid var(--accent-color); border-radius: 16px; padding: 25px; margin: 30px 0;">
+                    <h4 style="color: var(--accent-color); margin-bottom: 15px;"><i class="fas fa-lightbulb"></i> Key Insight</h4>
+                    <p style="color: var(--text-dark); line-height: 1.7;">
+                        While the triple constraint provides a fundamental framework, successful project management requires considering these additional factors to ensure comprehensive project success. Modern project management recognizes that <strong>quality, resources, and risk</strong> are equally important constraints that must be managed alongside scope, time, and cost.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Summary Section -->
+        <div class="visual-separator"></div>
+        
+        <div class="summary-box">
+            <h2><i class="fas fa-graduation-cap"></i> Project Management Fundamentals Mastered!</h2>
+            <p style="font-size: 1.2rem; opacity: 0.95; margin: 20px 0;">
+                You now understand what projects are, their key attributes, and how to manage the triple constraint. This foundation prepares you for successful project delivery in any industry.
+            </p>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 15px; margin-top: 30px;">
+                <div style="text-align: center; padding: 15px;">
+                    <div style="font-size: 2.5rem; font-weight: 800; margin-bottom: 5px;">6</div>
+                    <div style="font-size: 0.9rem; opacity: 0.9;">Project Attributes</div>
+                </div>
+                <div style="text-align: center; padding: 15px;">
+                    <div style="font-size: 2.5rem; font-weight: 800; margin-bottom: 5px;">3</div>
+                    <div style="font-size: 0.9rem; opacity: 0.9;">Core Constraints</div>
+                </div>
+                <div style="text-align: center; padding: 15px;">
+                    <div style="font-size: 2.5rem; font-weight: 800; margin-bottom: 5px;">3</div>
+                    <div style="font-size: 0.9rem; opacity: 0.9;">Additional Factors</div>
+                </div>
+                <div style="text-align: center; padding: 15px;">
+                    <div style="font-size: 2.5rem; font-weight: 800; margin-bottom: 5px;">∞</div>
+                    <div style="font-size: 0.9rem; opacity: 0.9;">Applications</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scroll to Top Button -->
+    <div class="scroll-top" id="scrollTop">
+        <i class="fas fa-chevron-up"></i>
+    </div>
+
+    <!-- JavaScript for Interactive Elements -->
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Animation on scroll observer
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in-up');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards and elements
+        document.querySelectorAll('.card, .attribute-card, .quick-card, .factor-card').forEach(element => {
+            observer.observe(element);
+        });
+
+        // Interactive attribute cards
+        document.querySelectorAll('.attribute-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-8px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Quick cards and factor cards interaction
+        document.querySelectorAll('.quick-card, .factor-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-5px) scale(1.05)';
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Triangle interactions
+        document.querySelectorAll('.triangle-side').forEach(side => {
+            side.addEventListener('mouseenter', () => {
+                side.style.filter = 'drop-shadow(0 0 15px currentColor)';
+            });
+            
+            side.addEventListener('mouseleave', () => {
+                side.style.filter = 'none';
+            });
+        });
+
+        // Constraint labels interaction
+        document.querySelectorAll('.constraint-label').forEach(label => {
+            label.addEventListener('mouseenter', () => {
+                label.style.transform = 'translate(-50%, -50%) scale(1.1)';
+            });
+            
+            label.addEventListener('mouseleave', () => {
+                label.style.transform = 'translate(-50%, -50%) scale(1)';
+            });
+        });
+
+        // Scroll to top functionality
+        const scrollTopBtn = document.getElementById('scrollTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollTopBtn.classList.add('visible');
+            } else {
+                scrollTopBtn.classList.remove('visible');
+            }
+        });
+
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Add click interactions for educational feedback
+        document.querySelectorAll('.attribute-card').forEach(card => {
+            card.addEventListener('click', () => {
+                // Visual feedback on click
+                card.style.borderLeftWidth = '8px';
+                setTimeout(() => {
+                    card.style.borderLeftWidth = '5px';
+                }, 500);
+            });
+        });
+
+        // Image hover effects
+        document.querySelectorAll('.constraint-image').forEach(img => {
+            img.addEventListener('mouseenter', () => {
+                img.style.transform = 'scale(1.02)';
+                img.style.boxShadow = '0 25px 50px rgba(0,0,0,0.15)';
+            });
+            
+            img.addEventListener('mouseleave', () => {
+                img.style.transform = 'scale(1)';
+                img.style.boxShadow = 'var(--card-shadow)';
+            });
+        });
+    </script>
+</body>
+</html>

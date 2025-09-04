@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Role of the Project Manager</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #f8fafc;
+            --accent-color: #10b981;
+            --warning-color: #f59e0b;
+            --success-color: #22c55e;
+            --info-color: #3b82f6;
+            --text-dark: #1e293b;
+            --text-light: #64748b;
+            --border-color: #e2e8f0;
+            --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --card-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --hover-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--secondary-color);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        .nav-container {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .nav-brand {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--text-light);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-menu a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: var(--bg-gradient);
+            color: white;
+            padding: 120px 0 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="rgba(255,255,255,0.1)" points="0,0 1000,300 1000,1000 0,700"/></svg>');
+            background-size: cover;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .hero .subtitle {
+            font-size: 1.4rem;
+            opacity: 0.9;
+            margin-bottom: 40px;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 60px 0;
+        }
+
+        .section {
+            margin-bottom: 80px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: var(--card-shadow);
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--bg-gradient);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--hover-shadow);
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        h3 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 20px;
+        }
+
+        /* Chapter Sections */
+        .chapter-section {
+            border-left: 4px solid var(--primary-color);
+            padding-left: 30px;
+            margin: 50px 0;
+        }
+
+        .chapter-title {
+            background: var(--bg-gradient);
+            color: white;
+            padding: 20px 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        /* Role Cards */
+        .role-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+
+        .role-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+            text-align: center;
+            transition: all 0.3s ease;
+            border-top: 4px solid var(--primary-color);
+        }
+
+        .role-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--hover-shadow);
+        }
+
+        .role-card i {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .role-card h5 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--text-dark);
+        }
+
+        .role-card p {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            line-height: 1.5;
+        }
+
+        /* Skills Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .skill-card {
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: var(--card-shadow);
+            transition: all 0.3s ease;
+            position: relative;
+            border-left: 5px solid var(--primary-color);
+        }
+
+        .skill-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--hover-shadow);
+        }
+
+        .skill-card:nth-child(1) { border-left-color: #3b82f6; }
+        .skill-card:nth-child(2) { border-left-color: #10b981; }
+        .skill-card:nth-child(3) { border-left-color: #f59e0b; }
+        .skill-card:nth-child(4) { border-left-color: #ef4444; }
+        .skill-card:nth-child(5) { border-left-color: #8b5cf6; }
+        .skill-card:nth-child(6) { border-left-color: #06b6d4; }
+        .skill-card:nth-child(7) { border-left-color: #84cc16; }
+
+        .skill-card .icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .skill-card:nth-child(1) .icon { background: #3b82f6; }
+        .skill-card:nth-child(2) .icon { background: #10b981; }
+        .skill-card:nth-child(3) .icon { background: #f59e0b; }
+        .skill-card:nth-child(4) .icon { background: #ef4444; }
+        .skill-card:nth-child(5) .icon { background: #8b5cf6; }
+        .skill-card:nth-child(6) .icon { background: #06b6d4; }
+        .skill-card:nth-child(7) .icon { background: #84cc16; }
+
+        .skill-card h4 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 15px;
+        }
+
+        .skill-card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Stakeholder Section */
+        .stakeholder-section {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(16, 185, 129, 0.05) 100%);
+            border: 2px solid var(--accent-color);
+            border-radius: 16px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+
+        .stakeholder-section h4 {
+            color: var(--accent-color);
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Job Market Stats */
+        .job-stats {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(245, 158, 11, 0.05) 100%);
+            border: 2px solid var(--warning-color);
+            border-radius: 16px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+
+        .job-stats h4 {
+            color: var(--warning-color);
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .stat-item {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--warning-color);
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        /* Knowledge Areas Connection */
+        .knowledge-connection {
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.1) 0%, rgba(37, 99, 235, 0.05) 100%);
+            border: 2px solid var(--primary-color);
+            border-radius: 16px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+
+        .knowledge-connection h4 {
+            color: var(--primary-color);
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .knowledge-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .knowledge-item {
+            background: white;
+            padding: 10px 15px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            color: var(--text-dark);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .knowledge-item i {
+            color: var(--primary-color);
+            font-size: 0.8rem;
+        }
+
+        /* Summary Box */
+        .summary-box {
+            background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 16px;
+            text-align: center;
+            margin: 50px 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .card {
+                padding: 25px;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        /* Visual Separator */
+        .visual-separator {
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            border-radius: 2px;
+            margin: 50px 0;
+        }
+
+        /* Scroll to Top */
+        .scroll-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--primary-color);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: var(--card-shadow);
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+        }
+
+        .scroll-top:hover {
+            background: var(--accent-color);
+            transform: translateY(-3px);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <div class="nav-container">
+        <nav class="nav">
+            <div class="nav-brand">
+                <i class="fas fa-user-tie"></i> Project Manager Guide
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#role">PM Role</a></li>
+                <li><a href="#job-description">Job Market</a></li>
+                <li><a href="#skills">Essential Skills</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content fade-in-up">
+                <h1>Chapter 1.4: The Role of the Project Manager</h1>
+                <p class="subtitle">Essential Skills, Responsibilities, and Market Opportunities</p>
+                <div style="font-size: 4rem; margin-top: 20px;">
+                    <i class="fas fa-user-cog"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container main-content">
+        
+        <!-- The Role of Project Manager -->
+        <section id="role" class="section">
+            <div class="chapter-section">
+                <div class="chapter-title">
+                    1.4 The Role of the Project Manager
+                </div>
+                
+                <div class="card fade-in-up">
+                    <p style="font-size: 1.2rem; line-height: 1.8; color: var(--text-light); margin-bottom: 30px;">
+                        Project managers play a pivotal role in bringing projects to successful completion. They serve as the central coordination point, ensuring all elements work together harmoniously[211][212].
+                    </p>
+
+                    <h3>Core Project Manager Responsibilities:</h3>
+                    <p style="font-size: 1.1rem; margin-bottom: 30px; color: var(--text-light);">
+                        <strong>The project managers must:</strong>
+                    </p>
+
+                    <div class="role-grid">
+                        <div class="role-card">
+                            <i class="fas fa-users"></i>
+                            <h5>Stakeholder Collaboration</h5>
+                            <p><strong>Work closely with other stakeholders</strong> on a project, especially the sponsor and project team</p>
+                        </div>
+                        
+                        <div class="role-card">
+                            <i class="fas fa-brain"></i>
+                            <h5>Knowledge Areas Mastery</h5>
+                            <p><strong>Be familiar with the 10 project management knowledge areas</strong> and understand their interconnections</p>
+                        </div>
+                        
+                        <div class="role-card">
+                            <i class="fas fa-tools"></i>
+                            <h5>Tools & Techniques</h5>
+                            <p><strong>Know various tools and techniques</strong> related to project management and when to apply them effectively</p>
+                        </div>
+                        
+                        <div class="role-card">
+                            <i class="fas fa-chart-line"></i>
+                            <h5>Performance Monitoring</h5>
+                            <p>Track project progress, identify issues early, and implement corrective actions to keep projects on track</p>
+                        </div>
+                        
+                        <div class="role-card">
+                            <i class="fas fa-balance-scale"></i>
+                            <h5>Resource Management</h5>
+                            <p>Allocate and optimize resources efficiently while managing budgets, timelines, and quality expectations</p>
+                        </div>
+                        
+                        <div class="role-card">
+                            <i class="fas fa-handshake"></i>
+                            <h5>Communication Hub</h5>
+                            <p>Act as the primary communication point between team members, stakeholders, and organizational leadership</p>
+                        </div>
+                    </div>
+
+                    <!-- Stakeholder Collaboration Focus -->
+                    <div class="stakeholder-section">
+                        <h4><i class="fas fa-users-cog"></i> Stakeholder Collaboration Excellence</h4>
+                        <p style="margin: 15px 0; line-height: 1.7;">
+                            Project managers must excel at <strong>stakeholder management</strong>, as they serve as the central coordination point for all project participants[213][216]. This includes managing relationships with sponsors who provide direction and funding, team members who execute the work, and external stakeholders who influence or are impacted by the project outcomes.
+                        </p>
+                    </div>
+
+                    <!-- Knowledge Areas Connection -->
+                    <div class="knowledge-connection">
+                        <h4><i class="fas fa-puzzle-piece"></i> 10 Knowledge Areas Familiarity</h4>
+                        <p style="margin: 15px 0; line-height: 1.7;">
+                            Successful project managers must understand and apply all <strong>10 PMBOK knowledge areas</strong>, as these represent the fundamental competencies required for effective project management:
+                        </p>
+                        
+                        <div class="knowledge-list">
+                            <div class="knowledge-item">
+                                <i class="fas fa-circle"></i>
+                                <span>Integration Management</span>
+                            </div>
+                            <div class="knowledge-item">
+                                <i class="fas fa-circle"></i>
+                                <span>Scope Management</span>
+                            </div>
+                            <div class="knowledge-item">
+                                <i class="fas fa-circle"></i>
+                                <span>Time Management</span>
+                            </div>
+                            <div class="knowledge-item">
+                                <i class="fas fa-circle"></i>
+                                <span>Cost Management</span>
+                            </div>
+                            <div class="knowledge-item">
+                                <i class="fas fa-circle"></i>
+                                <span>Quality Management</span>
+                            </div>
+                            <div class="knowledge-item">
+                                <i class="fas fa-circle"></i>
+                                <span>Human Resource Management</span>
+                            </div>
+                            <div class="knowledge-item">
+                                <i class="fas fa-circle"></i>
+                                <span>Communications Management</span>
+                            </div>
+                            <div class="knowledge-item">
+                                <i class="fas fa-circle"></i>
+                                <span>Risk Management</span>
+                            </div>
+                            <div class="knowledge-item">
+                                <i class="fas fa-circle"></i>
+                                <span>Procurement Management</span>
+                            </div>
+                            <div class="knowledge-item">
+                                <i class="fas fa-circle"></i>
+                                <span>Stakeholder Management</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Job Description and Market -->
+        <section id="job-description" class="section">
+            <div class="chapter-section">
+                <div class="chapter-title">
+                    1.4A Project Manager Job Description
+                </div>
+                
+                <div class="card fade-in-up">
+                    <p style="font-size: 1.1rem; margin-bottom: 30px; color: var(--text-light);">
+                        <strong>The job description for a project manager can vary by industry and by organization.</strong> However, the core responsibilities remain consistent across different sectors and company sizes[211][212].
+                    </p>
+
+                    <!-- Job Market Statistics -->
+                    <div class="job-stats">
+                        <h4><i class="fas fa-chart-bar"></i> Job Market Opportunities</h4>
+                        <p style="margin: 15px 0; line-height: 1.7;">
+                            Sites like <strong>Indeed.com or Monster.com</strong> listed hundreds of thousands of job openings for project management, demonstrating the high demand for skilled project managers across industries.
+                        </p>
+                        
+                        <div class="stats-grid">
+                            <div class="stat-item">
+                                <div class="stat-number">500k+</div>
+                                <div class="stat-label">Job Openings Annually</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">22%</div>
+                                <div class="stat-label">Projected Growth Rate</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">$116k</div>
+                                <div class="stat-label">Average Salary</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">15.7M</div>
+                                <div class="stat-label">Global PM Jobs by 2027</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3>Typical Project Manager Responsibilities:</h3>
+                    <div style="background: white; padding: 25px; border-radius: 12px; box-shadow: var(--card-shadow); margin: 30px 0;">
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+                            
+                            <div>
+                                <h5 style="color: var(--primary-color); margin-bottom: 10px;"><i class="fas fa-clipboard-list"></i> Planning & Strategy</h5>
+                                <ul style="list-style: none; padding: 0;">
+                                    <li style="padding: 5px 0; position: relative; padding-left: 20px;">
+                                        <i class="fas fa-check" style="position: absolute; left: 0; color: var(--success-color); font-size: 0.8rem; top: 8px;"></i>
+                                        Define project scope and objectives
+                                    </li>
+                                    <li style="padding: 5px 0; position: relative; padding-left: 20px;">
+                                        <i class="fas fa-check" style="position: absolute; left: 0; color: var(--success-color); font-size: 0.8rem; top: 8px;"></i>
+                                        Develop comprehensive project plans
+                                    </li>
+                                    <li style="padding: 5px 0; position: relative; padding-left: 20px;">
+                                        <i class="fas fa-check" style="position: absolute; left: 0; color: var(--success-color); font-size: 0.8rem; top: 8px;"></i>
+                                        Create realistic timelines and budgets
+                                    </li>
+                                </ul>
+                            </div>
+                            
+                            <div>
+                                <h5 style="color: var(--primary-color); margin-bottom: 10px;"><i class="fas fa-users-cog"></i> Team Leadership</h5>
+                                <ul style="list-style: none; padding: 0;">
+                                    <li style="padding: 5px 0; position: relative; padding-left: 20px;">
+                                        <i class="fas fa-check" style="position: absolute; left: 0; color: var(--success-color); font-size: 0.8rem; top: 8px;"></i>
+                                        Build and lead project teams
+                                    </li>
+                                    <li style="padding: 5px 0; position: relative; padding-left: 20px;">
+                                        <i class="fas fa-check" style="position: absolute; left: 0; color: var(--success-color); font-size: 0.8rem; top: 8px;"></i>
+                                        Assign tasks and responsibilities
+                                    </li>
+                                    <li style="padding: 5px 0; position: relative; padding-left: 20px;">
+                                        <i class="fas fa-check" style="position: absolute; left: 0; color: var(--success-color); font-size: 0.8rem; top: 8px;"></i>
+                                        Motivate and guide team members
+                                    </li>
+                                </ul>
+                            </div>
+                            
+                            <div>
+                                <h5 style="color: var(--primary-color); margin-bottom: 10px;"><i class="fas fa-chart-line"></i> Monitoring & Control</h5>
+                                <ul style="list-style: none; padding: 0;">
+                                    <li style="padding: 5px 0; position: relative; padding-left: 20px;">
+                                        <i class="fas fa-check" style="position: absolute; left: 0; color: var(--success-color); font-size: 0.8rem; top: 8px;"></i>
+                                        Track project progress and performance
+                                    </li>
+                                    <li style="padding: 5px 0; position: relative; padding-left: 20px;">
+                                        <i class="fas fa-check" style="position: absolute; left: 0; color: var(--success-color); font-size: 0.8rem; top: 8px;"></i>
+                                        Manage risks and resolve issues
+                                    </li>
+                                    <li style="padding: 5px 0; position: relative; padding-left: 20px;">
+                                        <i class="fas fa-check" style="position: absolute; left: 0; color: var(--success-color); font-size: 0.8rem; top: 8px;"></i>
+                                        Ensure quality standards are met
+                                    </li>
+                                </ul>
+                            </div>
+                            
+                        </div>
+                    </div>
+
+                    <div style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.1) 0%, rgba(34, 197, 94, 0.05) 100%); border: 2px solid var(--success-color); border-radius: 16px; padding: 25px; margin: 30px 0;">
+                        <h4 style="color: var(--success-color); margin-bottom: 15px;"><i class="fas fa-rocket"></i> Career Growth Opportunity</h4>
+                        <p style="color: var(--text-dark); line-height: 1.7;">
+                            Project management is recognized as one of the <strong>fastest-growing career fields</strong> globally. The Project Management Institute (PMI) projects that employers will need to fill approximately 2.2 million new project-oriented roles each year through 2027, making this an excellent career choice for software testing engineering students.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="visual-separator"></div>
+
+        <!-- Essential Skills -->
+        <section id="skills" class="section">
+            <div class="chapter-section">
+                <div class="chapter-title">
+                    1.4B Suggested Skills for Project Managers
+                </div>
+                
+                <div class="card fade-in-up">
+                    <p style="font-size: 1.1rem; margin-bottom: 30px; color: var(--text-light);">
+                        <strong>A 2013 survey by CIO.com</strong> listed seven skills project managers need in order to be effective and successful in leading projects. These skills remain highly relevant today and form the foundation for project management excellence[220][221].
+                    </p>
+
+                    <div class="skills-grid">
+                        
+                        <!-- Skill 1: Organization -->
+                        <div class="skill-card">
+                            <div class="icon">
+                                <i class="fas fa-clipboard-list"></i>
+                            </div>
+                            <h4>1. Be Highly Organized</h4>
+                            <p>Project managers must excel at organizing complex information, managing multiple tasks simultaneously, and maintaining clear documentation. Strong organizational skills enable effective resource coordination and timeline management[211].</p>
+                        </div>
+
+                        <!-- Skill 2: Leadership -->
+                        <div class="skill-card">
+                            <div class="icon">
+                                <i class="fas fa-crown"></i>
+                            </div>
+                            <h4>2. Take Charge and Know How to Lead</h4>
+                            <p>Effective leadership involves inspiring teams, making decisive decisions, and guiding projects through challenges. Project managers must demonstrate authority while fostering collaboration and team engagement[214].</p>
+                        </div>
+
+                        <!-- Skill 3: Communication -->
+                        <div class="skill-card">
+                            <div class="icon">
+                                <i class="fas fa-comments"></i>
+                            </div>
+                            <h4>3. Be an Effective Communicator</h4>
+                            <p>Clear, consistent communication is essential for stakeholder alignment, team coordination, and project success. This includes both verbal and written communication across various audiences and contexts[212].</p>
+                        </div>
+
+                        <!-- Skill 4: Negotiation -->
+                        <div class="skill-card">
+                            <div class="icon">
+                                <i class="fas fa-handshake"></i>
+                            </div>
+                            <h4>4. Know How and When to Negotiate</h4>
+                            <p>Project managers must negotiate resources, timelines, scope changes, and conflict resolution. Strong negotiation skills help balance competing interests and achieve win-win outcomes for all stakeholders.</p>
+                        </div>
+
+                        <!-- Skill 5: Detail-Oriented -->
+                        <div class="skill-card">
+                            <div class="icon">
+                                <i class="fas fa-search"></i>
+                            </div>
+                            <h4>5. Be Detail-Oriented</h4>
+                            <p>Attention to detail ensures project requirements are met, risks are identified early, and quality standards are maintained. Small oversights can lead to significant project problems and failures.</p>
+                        </div>
+
+                        <!-- Skill 6: Problem Solving -->
+                        <div class="skill-card">
+                            <div class="icon">
+                                <i class="fas fa-lightbulb"></i>
+                            </div>
+                            <h4>6. Recognize and Solve Problems Quickly</h4>
+                            <p>Projects inevitably encounter unexpected challenges. Successful project managers can quickly identify issues, analyze root causes, and implement effective solutions to keep projects on track[214].</p>
+                        </div>
+
+                        <!-- Skill 7: Technical Skills -->
+                        <div class="skill-card">
+                            <div class="icon">
+                                <i class="fas fa-cogs"></i>
+                            </div>
+                            <h4>7. Possess the Necessary Technical Skills</h4>
+                            <p>Project managers need relevant technical knowledge in their industry, familiarity with project management tools and software, and understanding of the technologies involved in their projects.</p>
+                        </div>
+
+                    </div>
+
+                    <div style="background: linear-gradient(135deg, rgba(37, 99, 235, 0.1) 0%, rgba(37, 99, 235, 0.05) 100%); border: 2px solid var(--primary-color); border-radius: 16px; padding: 25px; margin: 30px 0;">
+                        <h4 style="color: var(--primary-color); margin-bottom: 15px;"><i class="fas fa-graduation-cap"></i> Skill Development for Software Testing Engineers</h4>
+                        <p style="color: var(--text-dark); line-height: 1.7;">
+                            Software testing engineering students are particularly well-positioned to develop these project management skills. Your background in <strong>quality assurance, attention to detail, and technical problem-solving</strong> provides an excellent foundation for project management success. Consider pursuing PMP certification or Agile project management training to complement your technical expertise.
+                        </p>
+                    </div>
+
+                    <h3>Additional Modern Skills:</h3>
+                    <div style="background: white; padding: 25px; border-radius: 12px; box-shadow: var(--card-shadow); margin: 30px 0;">
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                            
+                            <div style="text-align: center; padding: 15px; border: 2px solid var(--border-color); border-radius: 8px;">
+                                <i class="fas fa-brain" style="font-size: 2rem; color: var(--accent-color); margin-bottom: 10px;"></i>
+                                <h6 style="color: var(--text-dark); margin-bottom: 8px;">Emotional Intelligence</h6>
+                                <p style="font-size: 0.9rem; color: var(--text-light);">Understanding and managing emotions in team dynamics</p>
+                            </div>
+                            
+                            <div style="text-align: center; padding: 15px; border: 2px solid var(--border-color); border-radius: 8px;">
+                                <i class="fas fa-sync-alt" style="font-size: 2rem; color: var(--accent-color); margin-bottom: 10px;"></i>
+                                <h6 style="color: var(--text-dark); margin-bottom: 8px;">Adaptability</h6>
+                                <p style="font-size: 0.9rem; color: var(--text-light);">Flexibility in changing project environments</p>
+                            </div>
+                            
+                            <div style="text-align: center; padding: 15px; border: 2px solid var(--border-color); border-radius: 8px;">
+                                <i class="fas fa-laptop-code" style="font-size: 2rem; color: var(--accent-color); margin-bottom: 10px;"></i>
+                                <h6 style="color: var(--text-dark); margin-bottom: 8px;">Digital Fluency</h6>
+                                <p style="font-size: 0.9rem; color: var(--text-light);">Proficiency with digital project management tools</p>
+                            </div>
+                            
+                            <div style="text-align: center; padding: 15px; border: 2px solid var(--border-color); border-radius: 8px;">
+                                <i class="fas fa-chart-pie" style="font-size: 2rem; color: var(--accent-color); margin-bottom: 10px;"></i>
+                                <h6 style="color: var(--text-dark); margin-bottom: 8px;">Data Analysis</h6>
+                                <p style="font-size: 0.9rem; color: var(--text-light);">Using data to make informed project decisions</p>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Summary Section -->
+        <div class="visual-separator"></div>
+        
+        <div class="summary-box">
+            <h2><i class="fas fa-graduation-cap"></i> Project Manager Excellence Achieved!</h2>
+            <p style="font-size: 1.2rem; opacity: 0.95; margin: 20px 0;">
+                You now understand the comprehensive role of project managers, from stakeholder collaboration to essential skills development. This knowledge positions you to pursue project management opportunities and excel in leading successful projects across any industry.
+            </p>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 15px; margin-top: 30px;">
+                <div style="text-align: center; padding: 15px;">
+                    <div style="font-size: 2.5rem; font-weight: 800; margin-bottom: 5px;">10</div>
+                    <div style="font-size: 0.9rem; opacity: 0.9;">Knowledge Areas</div>
+                </div>
+                <div style="text-align: center; padding: 15px;">
+                    <div style="font-size: 2.5rem; font-weight: 800; margin-bottom: 5px;">7</div>
+                    <div style="font-size: 0.9rem; opacity: 0.9;">Essential Skills</div>
+                </div>
+                <div style="text-align: center; padding: 15px;">
+                    <div style="font-size: 2.5rem; font-weight: 800; margin-bottom: 5px;">500k+</div>
+                    <div style="font-size: 0.9rem; opacity: 0.9;">Job Opportunities</div>
+                </div>
+                <div style="text-align: center; padding: 15px;">
+                    <div style="font-size: 2.5rem; font-weight: 800; margin-bottom: 5px;">∞</div>
+                    <div style="font-size: 0.9rem; opacity: 0.9;">Career Growth</div>
+                </div>
+            </div>
+            
+            <div style="margin-top: 30px;">
+                <p style="font-size: 1rem; opacity: 0.9;">
+                    <strong>Next Steps:</strong> Consider pursuing PMP certification, gain practical experience through internships, and continuously develop both technical and soft skills for project management success.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scroll to Top Button -->
+    <div class="scroll-top" id="scrollTop">
+        <i class="fas fa-chevron-up"></i>
+    </div>
+
+    <!-- JavaScript for Interactive Elements -->
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Animation on scroll observer
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in-up');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards and elements
+        document.querySelectorAll('.card, .skill-card, .role-card').forEach(element => {
+            observer.observe(element);
+        });
+
+        // Interactive skill cards
+        document.querySelectorAll('.skill-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-8px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Role cards interaction
+        document.querySelectorAll('.role-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-5px) scale(1.05)';
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Scroll to top functionality
+        const scrollTopBtn = document.getElementById('scrollTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollTopBtn.classList.add('visible');
+            } else {
+                scrollTopBtn.classList.remove('visible');
+            }
+        });
+
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Knowledge items animation
+        document.querySelectorAll('.knowledge-item').forEach((item, index) => {
+            item.addEventListener('mouseenter', () => {
+                item.style.transform = 'scale(1.05)';
+                item.style.backgroundColor = 'rgba(37, 99, 235, 0.1)';
+            });
+            
+            item.addEventListener('mouseleave', () => {
+                item.style.transform = 'scale(1)';
+                item.style.backgroundColor = 'white';
+            });
+        });
+
+        // Stats animation on scroll
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const statNumber = entry.target.querySelector('.stat-number');
+                    if (statNumber && !statNumber.dataset.animated) {
+                        statNumber.dataset.animated = 'true';
+                        statNumber.style.transform = 'scale(1.2)';
+                        setTimeout(() => {
+                            statNumber.style.transform = 'scale(1)';
+                        }, 300);
+                    }
+                }
+            });
+        });
+
+        document.querySelectorAll('.stat-item').forEach(item => {
+            statsObserver.observe(item);
+        });
+
+        // Add click interactions for educational feedback
+        document.querySelectorAll('.skill-card').forEach(card => {
+            card.addEventListener('click', () => {
+                // Visual feedback on click
+                card.style.borderLeftWidth = '8px';
+                setTimeout(() => {
+                    card.style.borderLeftWidth = '5px';
+                }, 500);
+            });
+        });
+    </script>
+</body>
+</html>
