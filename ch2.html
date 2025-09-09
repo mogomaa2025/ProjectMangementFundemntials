@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 2: The Project Management Life Cycle & Process</title>
+    
+    <!-- Google Fonts for modern typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e67e22;
+            --bg-color: #f4f6f9;
+            --card-bg: #ffffff;
+            --text-color: #34495e;
+            --header-font: 'Poppins', sans-serif;
+            --body-font: 'Cairo', sans-serif;
+        }
+
+        body {
+            font-family: var(--body-font);
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        header .icon {
+            font-size: 50px;
+            color: var(--secondary-color);
+        }
+
+        header h1 {
+            font-family: var(--header-font);
+            font-size: 2.8em;
+            color: var(--primary-color);
+            margin: 10px 0;
+        }
+
+        header p {
+            font-size: 1.2em;
+            color: #7f8c8d;
+        }
+
+        .accordion-item {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .accordion-header {
+            padding: 20px 25px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .accordion-header h2 {
+            margin: 0;
+            font-size: 1.6em;
+            display: flex;
+            align-items: center;
+        }
+        
+        .accordion-header h2 .en-title {
+            font-family: var(--header-font);
+            margin-right: 15px;
+            opacity: 0.8;
+            font-size: 0.9em;
+        }
+
+        .accordion-header .icon {
+            font-size: 1.5em;
+            transition: transform 0.3s ease;
+        }
+
+        .accordion-item.active .accordion-header .icon {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out, padding 0.5s ease-out;
+            padding: 0 25px;
+        }
+        
+        .card {
+            background-color: #fdfdfd;
+            border: 1px solid #ecf0f1;
+            border-right: 5px solid var(--secondary-color);
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+
+        .card h3 {
+            font-size: 1.4em;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+        }
+        
+        .card h3 .en-title {
+             font-family: var(--header-font);
+             margin-right: 10px;
+        }
+
+        .card h3 i {
+            margin-left: 15px;
+            color: var(--accent-color);
+        }
+
+        .explanation {
+            background-color: #eaf5fc;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 15px;
+            font-size: 1.1em;
+            color: #2980b9;
+            border-right: 4px solid #3498db;
+        }
+        
+        .explanation strong {
+            color: #2c3e50;
+        }
+
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            text-decoration: underline;
+            text-decoration-style: dotted;
+            color: var(--accent-color);
+            font-weight: bold;
+            font-family: var(--header-font);
+        }
+
+        .tooltip .tooltip-text {
+            visibility: hidden;
+            width: 250px;
+            background-color: #2c3e50;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 8px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -125px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-family: var(--body-font);
+            font-size: 0.9em;
+        }
+
+        .tooltip:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+        }
+        
+        /* Tabs for Models */
+        .tabs-container {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            background: #ecf0f1;
+            border-radius: 5px 5px 0 0;
+            margin-left: 5px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        .tab:hover {
+            background: #dce4e8;
+        }
+        .tab.active {
+            background: var(--secondary-color);
+            color: white;
+        }
+        .tab-content {
+            display: none;
+            width: 100%;
+        }
+        .tab-content.active {
+            display: block;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <header>
+            <div class="icon"><i class="fas fa-sitemap"></i></div>
+            <h1>The Project Management Life Cycle & Process</h1>
+            <p>الفصل الثاني: دورة حياة وإجراءات إدارة المشاريع</p>
+        </header>
+
+        <!-- Section 1: Project Phases -->
+        <div class="accordion-item">
+            <div class="accordion-header">
+                <h2><span class="en-title">2.1</span> مراحل المشروع <span class="en-title">(Project Phases)</span></h2>
+                <div class="icon"><i class="fas fa-chevron-down"></i></div>
+            </div>
+            <div class="accordion-content">
+                <div class="card">
+                    <h3><i class="fas fa-lightbulb"></i> مرحلة المفهوم <span class="en-title">(Concept Phase)</span></h3>
+                    <p>In the concept phase, an overview of the required work is created by the managers.</p>
+                    <div class="explanation">
+                        <strong>شرح:</strong> دي مرحلة "تكوين الفكرة" أو "لما بنحلم بالمشروع". هنا، بيتم وضع الخطوط العريضة، وأهم حاجة بتطلع هنا هي الـ <span class="tooltip">business case<span class="tooltip-text">حالة العمل: وثيقة تشرح الحاجة للمشروع والفوائد المتوقعة منه.</span></span> اللي بتحدد ليه إحنا محتاجين المشروع ده أصلاً.
+                    </div>
+                </div>
+                <div class="card">
+                    <h3><i class="fas fa-drafting-compass"></i> مرحلة التطوير <span class="en-title">(Development Phase)</span></h3>
+                    <p>The team decides on hardware, software, training, maintenance, and integration.</p>
+                     <div class="explanation">
+                        <strong>شرح:</strong> بعد ما الفكرة اتوضحت، بيبدأ شغل التخطيط الجد. بنعمل خطط مفصلة، تقدير دقيق للتكاليف، وبنعمل <span class="tooltip">WBS<span class="tooltip-text">هيكل تجزئة العمل (Work Breakdown Structure): تقسيم المشروع لأجزاء صغيرة قابلة للإدارة.</span></span> مفصل. كأننا بنرسم الخريطة الهندسية للمشروع.
+                    </div>
+                </div>
+                <div class="card">
+                    <h3><i class="fas fa-cogs"></i> مرحلة التنفيذ <span class="en-title">(Implementation Phase)</span></h3>
+                    <p>The project team obtains hardware and software, installs equipment, and delivers the project.</p>
+                    <div class="explanation">
+                        <strong>شرح:</strong> دي مرحلة "الشغل الحقيقي". هنا بنبدأ ننفذ كل اللي خططنا له. بنجيب المعدات، بنكتب الكود، وبنسلم الشغل المطلوب (<span class="tooltip">deliverables<span class="tooltip-text">المخرجات: أي منتج أو خدمة ملموسة ناتجة عن المشروع.</span></span>) وبنطلع تقارير أداء للـ <span class="tooltip">stakeholders<span class="tooltip-text">أصحاب المصلحة: أي شخص أو جهة تتأثر بالمشروع.</span></span>.
+                    </div>
+                </div>
+                <div class="card">
+                    <h3><i class="fas fa-flag-checkered"></i> مرحلة الإغلاق <span class="en-title">(Close-out Phase)</span></h3>
+                    <p>All work is completed, and customers accept the entire project. The team documents its experiences.</p>
+                    <div class="explanation">
+                        <strong>شرح:</strong> مرحلة "الفينيش"! هنا كل الشغل بيخلص، العميل بيوافق رسميًا على المشروع، وأهم حاجة بنعمل تقرير اسمه <span class="tooltip">lessons-learned report<span class="tooltip-text">تقرير الدروس المستفادة: وثيقة توثق النجاحات والأخطاء لنتعلم منها في المشاريع المستقبلية.</span></span> عشان نتعلم من التجربة.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 2: Project Life Cycle Models -->
+        <div class="accordion-item">
+            <div class="accordion-header">
+                <h2><span class="en-title">2.2</span> نماذج دورة حياة المشروع <span class="en-title">(Project Life Cycle Models)</span></h2>
+                <div class="icon"><i class="fas fa-chevron-down"></i></div>
+            </div>
+            <div class="accordion-content" style="padding-top: 25px; padding-bottom: 25px;">
+                <div class="tabs-container" id="modelsTabs">
+                    <div class="tab active" data-tab="waterfall">Waterfall</div>
+                    <div class="tab" data-tab="spiral">Spiral</div>
+                    <div class="tab" data-tab="incremental">Incremental</div>
+                    <div class="tab" data-tab="prototyping">Prototyping</div>
+                    <div class="tab" data-tab="rad">RAD</div>
+                    <div class="tab" data-tab="agile">Agile & Scrum</div>
+                </div>
+
+                <div id="waterfall" class="tab-content active card">
+                    <h3><i class="fas fa-water"></i> The Waterfall Model (نموذج الشلال)</h3>
+                    <p>Has well-defined, linear stages. It assumes requirements will remain stable.</p>
+                    <div class="explanation">
+                        <strong>شرح:</strong> كأنه "سلم" أو "شلال". كل مرحلة بتخلص بالكامل قبل ما ندخل في اللي بعدها. مناسب جدًا للمشاريع اللي متطلباتها ثابتة ومش هتتغير، زي مشاريع البناء الضخمة.
+                    </div>
+                </div>
+                <div id="spiral" class="tab-content card">
+                    <h3><i class="fas fa-sync-alt"></i> The Spiral Model (النموذج الحلزوني)</h3>
+                    <p>Developed using an iterative or spiral approach rather than a linear one. The team is open to changes.</p>
+                    <div class="explanation">
+                        <strong>شرح:</strong> ده نموذج "لولبي". بنشتغل في دورات متكررة، وممكن نرجع لورا تاني لو حاجة محتاجة تتعدل. مناسب للمشاريع اللي فيها غموض أو احتمالية تغييرات عالية.
+                    </div>
+                </div>
+                <div id="incremental" class="tab-content card">
+                    <h3><i class="fas fa-cubes"></i> The Incremental Model (النموذج التزايدي)</h3>
+                    <p>Provides for progressive development, with each release providing added capabilities.</p>
+                    <div class="explanation">
+                        <strong>شرح:</strong> كأننا بنبني مشروع "حتة حتة". كل إصدار بنضيف فيه ميزات جديدة. العميل بيستلم نسخة شغالة من البرنامج بدري، ومع كل تحديث بياخد إمكانيات أكتر.
+                    </div>
+                </div>
+                <div id="prototyping" class="tab-content card">
+                    <h3><i class="fas fa-user-edit"></i> The Prototyping Model (نموذج أولي)</h3>
+                    <p>Used for developing software prototypes to clarify user requirements. Requires heavy user involvement.</p>
+                    <div class="explanation">
+                        <strong>شرح:</strong> هنا بنعمل "بروفة" أو "ماكيت" للمشروع. بنعمل نموذج مبدئي عشان نوريه للعميل وناخد رأيه بدري. ممتاز للمشاريع اللي فيها واجهات مستخدم كتير زي تطبيقات الموبايل.
+                    </div>
+                </div>
+                <div id="rad" class="tab-content card">
+                    <h3><i class="fas fa-rocket"></i> The RAD Model (التطوير السريع للتطبيقات)</h3>
+                    <p>Developers work with an evolving prototype to produce systems quickly without sacrificing quality.</p>
+                    <div class="explanation">
+                        <strong>شرح:</strong> اسمه على مسمى. بيستخدم النماذج الأولية والمشاركة القوية من المستخدم عشان نطلع نظام شغال في أسرع وقت ممكن. مناسب للمشاريع اللي عامل الوقت فيها حاسم.
+                    </div>
+                </div>
+                <div id="agile" class="tab-content card">
+                    <h3><i class="fas fa-running"></i> Agile & Scrum Model (منهجية الأجايل وسكروم)</h3>
+                    <p>Agile is based on iterative and incremental work sequences called <span class="tooltip">sprints<span class="tooltip-text">سباقات العمل: دورات عمل قصيرة (أسبوعين-شهر) يركز فيها الفريق على إنجاز مجموعة محددة من المهام.</span></span>. Scrum is the leading agile method.</p>
+                    <div class="explanation">
+                        <strong>شرح:</strong> <span class="en-title">Agile</span> يعني "المرونة" أو "الرشاقة". دي طريقة شغل بتعتمد على دورات عمل قصيرة اسمها <span class="en-title">sprints</span>، وفي نهاية كل دورة بنسلم جزء شغال من المشروع. <span class="en-title">Scrum</span> هو أشهر إطار عمل لتطبيق الأجايل، ومثالي للمشاريع المعقدة اللي متطلباتها بتتغير كتير.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 3: Process Groups -->
+        <div class="accordion-item">
+            <div class="accordion-header">
+                <h2><span class="en-title">2.3</span> مجموعات عمليات إدارة المشاريع <span class="en-title">(Process Groups)</span></h2>
+                <div class="icon"><i class="fas fa-chevron-down"></i></div>
+            </div>
+            <div class="accordion-content">
+                <div class="card">
+                    <h3><i class="fas fa-play-circle"></i> Initiating Processes (عمليات البدء)</h3>
+                    <p>Include defining and authorizing a project or project phase.</p>
+                    <div class="explanation"><strong>شرح:</strong> دي "نقطة البداية". هنا بناخد الموافقة الرسمية عشان نبدأ المشروع، وبنحدد أهدافه الرئيسية.</div>
+                </div>
+                <div class="card">
+                     <h3><i class="fas fa-map-marked-alt"></i> Planning Processes (عمليات التخطيط)</h3>
+                    <p>Include devising a workable scheme to ensure the project addresses the organization's needs.</p>
+                    <div class="explanation"><strong>شرح:</strong> "التخطيط العميق". هنا بنرسم خريطة الطريق الكاملة للمشروع: النطاق، الجدول الزمني، التكلفة، المخاطر، إلخ.</div>
+                </div>
+                <div class="card">
+                    <h3><i class="fas fa-tools"></i> Executing Processes (عمليات التنفيذ)</h3>
+                    <p>Include coordinating people and resources to carry out the plans.</p>
+                    <div class="explanation"><strong>شرح:</strong> "الشغل بجد". هنا الفريق بيبدأ ينفذ الخطط اللي عملناها وينتج مخرجات المشروع.</div>
+                </div>
+                <div class="card">
+                    <h3><i class="fas fa-binoculars"></i> Monitoring & Controlling Processes (عمليات المراقبة والتحكم)</h3>
+                    <p>Monitor and measure progress against plans and take corrective action.</p>
+                    <div class="explanation"><strong>شرح:</strong> "العيون اللي مبتنامش". بنراقب الشغل وبنقارنه بالخطة، ولو في أي انحراف، بنصلح المسار.</div>
+                </div>
+                <div class="card">
+                    <h3><i class="fas fa-door-closed"></i> Closing Processes (عمليات الإغلاق)</h3>
+                    <p>Include formalizing acceptance of the project and ending it efficiently.</p>
+                    <div class="explanation"><strong>شرح:</strong> "النهاية السعيدة". بننهي المشروع بشكل رسمي، بنحصل على موافقة العميل النهائية، وبنوثق الدروس المستفادة.</div>
+                </div>
+            </div>
+        </div>
+        
+         <!-- Section 4: Summary -->
+        <div class="accordion-item">
+            <div class="accordion-header">
+                <h2><span class="en-title">2.4</span> الخلاصة والمثال الشامل <span class="en-title">(Summary & Example)</span></h2>
+                <div class="icon"><i class="fas fa-chevron-down"></i></div>
+            </div>
+            <div class="accordion-content">
+                <div class="card">
+                    <h3><i class="fas fa-clipboard-check"></i> خلاصة الزتونة</h3>
+                    <div class="explanation">
+                       <strong>الخلاصة:</strong> إدارة المشاريع مش عشوائية، دي علم ليه قواعد. بنقسم المشروع لمراحل واضحة، بنختار الطريقة (النموذج) المناسبة لشغلنا، وبندير المشروع من خلال 5 مجموعات عمليات منظمة (بدء، تخطيط، تنفيذ، مراقبة، إغلاق).
+                    </div>
+                </div>
+                 <div class="card">
+                    <h3><i class="fas fa-mobile-alt"></i> مثال عملي: مشروع تطبيق بنكي جديد</h3>
+                    <div class="explanation">
+                        <ul>
+                            <li><strong>المراحل:</strong> نبدأ بالفكرة (Concept)، ثم نخطط للتفاصيل والميزات (Development)، ثم نبرمج التطبيق ونطلقه (Implementation)، وأخيراً نسلمه للبنك ونتعلم من التجربة (Close-out).</li>
+                            <li><strong>النموذج:</strong> هنستخدم <span class="en-title">Agile Scrum</span> عشان نقدر نستقبل تغييرات من البنك بسرعة ونطلع تحديثات مستمرة.</li>
+                            <li><strong>العمليات:</strong> نبدأ بموافقة الإدارة (Initiating)، نضع الخطط الكاملة (Planning)، فريق العمل يبدأ التنفيذ (Executing)، نراقب التقدم والميزانية (Monitoring)، ونسلم التطبيق رسمياً في النهاية (Closing).</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // Accordion functionality
+        const accordionItems = document.querySelectorAll('.accordion-item');
+
+        accordionItems.forEach(item => {
+            const header = item.querySelector('.accordion-header');
+            const content = item.querySelector('.accordion-content');
+
+            header.addEventListener('click', () => {
+                const isActive = item.classList.contains('active');
+
+                // Close all other items
+                accordionItems.forEach(otherItem => {
+                    if (otherItem !== item) {
+                        otherItem.classList.remove('active');
+                        otherItem.querySelector('.accordion-content').style.maxHeight = '0';
+                        otherItem.querySelector('.accordion-content').style.padding = '0 25px';
+                    }
+                });
+
+                // Toggle the clicked item
+                if (isActive) {
+                    item.classList.remove('active');
+                    content.style.maxHeight = '0';
+                    content.style.padding = '0 25px';
+                } else {
+                    item.classList.add('active');
+                    content.style.maxHeight = content.scrollHeight + 50 + 'px';
+                    content.style.padding = '25px';
+                }
+            });
+        });
+        
+        // Tabs functionality
+        const tabsContainer = document.getElementById('modelsTabs');
+        const tabs = tabsContainer.querySelectorAll('.tab');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Deactivate all tabs and content
+                tabs.forEach(t => t.classList.remove('active'));
+                tabContents.forEach(c => c.classList.remove('active'));
+
+                // Activate clicked tab and corresponding content
+                tab.classList.add('active');
+                document.getElementById(tab.dataset.tab).classList.add('active');
+            });
+        });
+    </script>
+
+</body>
+</html>
