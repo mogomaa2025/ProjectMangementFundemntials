@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دورة حياة إدارة المشاريع - Project Management Life Cycle</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            padding: 40px 0;
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease-out 0.5s both;
+        }
+
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 30px;
+            animation: fadeIn 1s ease-out 1s both;
+        }
+
+        .nav-tab {
+            background: rgba(255,255,255,0.1);
+            border: 2px solid rgba(255,255,255,0.3);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            font-weight: 600;
+        }
+
+        .nav-tab:hover {
+            background: rgba(255,255,255,0.2);
+            border-color: rgba(255,255,255,0.5);
+            transform: translateY(-2px);
+        }
+
+        .nav-tab.active {
+            background: white;
+            color: #667eea;
+            border-color: white;
+        }
+
+        .content-section {
+            display: none;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        .card {
+            background: rgba(255,255,255,0.95);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.15);
+        }
+
+        .card h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 2rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .card h2:after {
+            content: '';
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .objectives-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .objective-item {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(240, 147, 251, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .objective-item:hover {
+            transform: scale(1.05);
+        }
+
+        .phases-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .phase-card {
+            background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            color: #2c3e50;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .phase-card:hover {
+            transform: translateY(-10px) rotate(2deg);
+            box-shadow: 0 20px 40px rgba(132, 250, 176, 0.3);
+        }
+
+        .phase-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .models-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .model-card {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 25px;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border-left: 5px solid #ff6b6b;
+        }
+
+        .model-card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 15px 30px rgba(252, 182, 159, 0.4);
+        }
+
+        .model-card h3 {
+            color: #d63031;
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+
+        .process-groups {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .process-group {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .process-group:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(168, 237, 234, 0.4);
+        }
+
+        .timeline {
+            position: relative;
+            margin: 30px 0;
+        }
+
+        .timeline-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+            opacity: 0;
+            animation: slideInRight 0.6s ease-out forwards;
+        }
+
+        .timeline-item:nth-child(even) {
+            animation: slideInLeft 0.6s ease-out forwards;
+        }
+
+        .timeline-number {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-left: 20px;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .timeline-content {
+            flex: 1;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background: rgba(255,255,255,0.3);
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            border-radius: 10px;
+            transition: width 1s ease-out;
+        }
+
+        .interactive-diagram {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .diagram-node {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 15px 25px;
+            margin: 10px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .diagram-node:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .floating-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .floating-element {
+            position: absolute;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .summary-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 20px;
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .summary-box h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        .summary-points {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .summary-point {
+            background: rgba(255,255,255,0.1);
+            padding: 15px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .arabic-text {
+            direction: rtl;
+            text-align: right;
+        }
+
+        .english-text {
+            direction: ltr;
+            text-align: left;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 { font-size: 2rem; }
+            .nav-tabs { flex-direction: column; align-items: center; }
+            .card { padding: 20px; }
+            .timeline-item { flex-direction: column; text-align: center; }
+            .timeline-number { margin: 0 0 15px 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-elements">
+        <div class="floating-element" style="width: 60px; height: 60px; top: 10%; left: 10%; animation-delay: 0s;"></div>
+        <div class="floating-element" style="width: 80px; height: 80px; top: 60%; right: 10%; animation-delay: 2s;"></div>
+        <div class="floating-element" style="width: 40px; height: 40px; top: 30%; left: 70%; animation-delay: 4s;"></div>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <h1>الفصل الثاني - Chapter 2</h1>
+            <p>دورة حياة إدارة المشاريع والعمليات<br>THE PROJECT MANAGEMENT LIFE CYCLE AND PROCESS</p>
+        </div>
+
+        <div class="nav-tabs">
+            <div class="nav-tab active" onclick="showSection('objectives')">الأهداف التعليمية</div>
+            <div class="nav-tab" onclick="showSection('phases')">مراحل المشروع</div>
+            <div class="nav-tab" onclick="showSection('models')">نماذج دورة الحياة</div>
+            <div class="nav-tab" onclick="showSection('processes')">مجموعات العمليات</div>
+            <div class="nav-tab" onclick="showSection('mapping')">الربط والتطبيق</div>
+            <div class="nav-tab" onclick="showSection('summary')">الملخص</div>
+        </div>
+
+        <!-- Learning Objectives Section -->
+        <div id="objectives" class="content-section active">
+            <div class="card">
+                <h2>الأهداف التعليمية - Learning Objectives</h2>
+                <div class="objectives-list">
+                    <div class="objective-item">
+                        <h3>مراحل المشروع - Project Phases</h3>
+                        <p class="arabic-text">شرح مراحل المشروع بما في ذلك المفهوم والتطوير والتنفيذ والإغلاق</p>
+                        <p class="english-text">Explain the project phases including concept, development, implementation and close-out</p>
+                    </div>
+                    <div class="objective-item">
+                        <h3>نُهج المشروع - Project Approaches</h3>
+                        <p class="arabic-text">فهم نُهج المشروع بما في ذلك نموذج الشلال والحلزوني والتطوير المتزايد</p>
+                        <p class="english-text">Understand project approaches including Waterfall, Spiral, Incremental build, Prototyping, RAD, and Agile models</p>
+                    </div>
+                    <div class="objective-item">
+                        <h3>مجموعات العمليات - Process Groups</h3>
+                        <p class="arabic-text">وصف مجموعات عمليات إدارة المشاريع والتفاعل فيما بينها</p>
+                        <p class="english-text">Describe the project management process groups and the interaction among them</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project Phases Section -->
+        <div id="phases" class="content-section">
+            <div class="card">
+                <h2>2.1 مراحل المشروع - Project Phases</h2>
+                <p class="arabic-text">لأن المشاريع تعمل كجزء من نظام وتتضمن عدم يقين، فمن الممارسات الجيدة تقسيم المشاريع إلى عدة مراحل.</p>
+                <p class="english-text">Because projects operate as part of a system and involve uncertainty, it is good practice to divide projects into several phases.</p>
+                
+                <div class="phases-container">
+                    <div class="phase-card" onclick="showPhaseDetails('concept')">
+                        <h3>1. مرحلة المفهوم<br>Concept Phase</h3>
+                        <p>إنشاء نظرة عامة على العمل المطلوب</p>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 25%"></div>
+                        </div>
+                    </div>
+                    <div class="phase-card" onclick="showPhaseDetails('development')">
+                        <h3>2. مرحلة التطوير<br>Development Phase</h3>
+                        <p>خطط إدارة المشروع وتقدير أكثر دقة للتكلفة</p>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 50%"></div>
+                        </div>
+                    </div>
+                    <div class="phase-card" onclick="showPhaseDetails('implementation')">
+                        <h3>3. مرحلة التنفيذ<br>Implementation Phase</h3>
+                        <p>تسليم العمل المطلوب وتقديم تقارير الأداء</p>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 75%"></div>
+                        </div>
+                    </div>
+                    <div class="phase-card" onclick="showPhaseDetails('closeout')">
+                        <h3>4. مرحلة الإغلاق<br>Close-out Phase</h3>
+                        <p>توثيق التجارب وقبول المشروع كاملاً</p>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 100%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="interactive-diagram">
+                    <h3>التسليمات - Deliverables</h3>
+                    <p><strong>التسليم هو منتج أو خدمة، مثل تقرير فني، جلسة تدريبية، قطعة أجهزة، أو جزء من كود البرمجيات</strong></p>
+                    <p><em>A deliverable is a product or service, such as a technical report, a training session, a piece of hardware, or a segment of software code</em></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Life Cycle Models Section -->
+        <div id="models" class="content-section">
+            <div class="card">
+                <h2>2.2 نماذج دورة حياة المشروع - Project Life Cycle Models</h2>
+                <p class="arabic-text">بعض النماذج الشائعة لدورة حياة تطوير الأنظمة تشمل:</p>
+                <p class="english-text">Some popular models of an SDLC include:</p>
+
+                <div class="models-grid">
+                    <div class="model-card">
+                        <h3>نموذج الشلال - Waterfall Model</h3>
+                        <p class="arabic-text">نموذج دورة حياة الشلال له مراحل خطية محددة جيداً من تحليل النظم والتصميم والبناء والاختبار والدعم</p>
+                        <p class="english-text">Has well-defined, linear stages of systems analysis, design, construction, testing, and support. Assumes requirements will remain stable.</p>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 90%"></div>
+                        </div>
+                    </div>
+
+                    <div class="model-card">
+                        <h3>النموذج الحلزوني - Spiral Model</h3>
+                        <p class="arabic-text">تم تطوير نموذج دورة حياة الحلزون بناءً على تحسينات نموذج الشلال. يعترف بأن معظم البرمجيات تُطور باستخدام نهج تكراري</p>
+                        <p class="english-text">Developed based on refinements of the waterfall model. Recognizes iterative development approach rather than linear.</p>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 80%"></div>
+                        </div>
+                    </div>
+
+                    <div class="model-card">
+                        <h3>النموذج التزايدي - Incremental Model</h3>
+                        <p class="arabic-text">يوفر نموذج دورة الحياة التزايدية للتطوير التدريجي للبرمجيات التشغيلية، مع كل إصدار يوفر قدرات إضافية</p>
+                        <p class="english-text">Provides for progressive development of operational software, with each release providing added capabilities.</p>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 75%"></div>
+                        </div>
+                    </div>
+
+                    <div class="model-card">
+                        <h3>نموذج النماذج الأولية - Prototyping Model</h3>
+                        <p class="arabic-text">يستخدم لتطوير نماذج أولية للبرمجيات لتوضيح متطلبات المستخدم للبرمجيات التشغيلية</p>
+                        <p class="english-text">Used for developing software prototypes to clarify user requirements. Requires heavy user involvement.</p>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 70%"></div>
+                        </div>
+                    </div>
+
+                    <div class="model-card">
+                        <h3>نموذج RAD - RAD Model</h3>
+                        <p class="arabic-text">نموذج دورة حياة RAD يستخدم نهجاً يعمل فيه المطورون مع نموذج أولي متطور</p>
+                        <p class="english-text">Uses an approach in which developers work with an evolving prototype. Helps produce systems quickly without sacrificing quality.</p>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 85%"></div>
+                        </div>
+                    </div>
+
+                    <div class="model-card">
+                        <h3>التطوير الرشيق - Agile Development</h3>
+                        <p class="arabic-text">الرشيق يعني استخدام طريقة تعتمد على تسلسلات عمل تكرارية وتزايدية تُعرف عادة باسم السبرينت</p>
+                        <p class="english-text">Uses iterative and incremental work sequences (sprints). Requirements and solutions evolve through collaboration.</p>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 95%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Scrum Framework</h3>
+                    <div class="interactive-diagram">
+                        <div class="diagram-node">Product Backlog</div>
+                        <div class="diagram-node">Sprint Planning</div>
+                        <div class="diagram-node">Sprint (1-4 weeks)</div>
+                        <div class="diagram-node">Daily Scrums</div>
+                        <div class="diagram-node">Sprint Review</div>
+                        <div class="diagram-node">Sprint Retrospective</div>
+                    </div>
+                    <p class="arabic-text"><strong>سكرم هو الطريقة الرائدة للتطوير الرشيق لإكمال المشاريع ذات النطاق المعقد والمبتكر</strong></p>
+                    <p class="english-text"><em>Scrum is the leading agile development method for completing projects with a complex, innovative scope of work</em></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Process Groups Section -->
+        <div id="processes" class="content-section">
+            <div class="card">
+                <h2>2.3 مجموعات عمليات إدارة المشاريع - Project Management Process Groups</h2>
+                <p class="arabic-text">العملية هي سلسلة من الإجراءات الموجهة نحو نتيجة معينة. يمكن النظر إلى إدارة المشاريع كعدد من العمليات المترابطة.</p>
+                <p class="english-text">A process is a series of actions directed toward a particular result. Project management can be viewed as a number of interlinked processes.</p>
+
+                <div class="process-groups">
+                    <div class="process-group">
+                        <h3>البدء - Initiating</h3>
+                        <p>تعريف وترخيص مشروع أو مرحلة مشروع</p>
+                        <p><em>Defining and authorizing a project or project phase</em></p>
+                    </div>
+                    <div class="process-group">
+                        <h3>التخطيط - Planning</h3>
+                        <p>وضع والحفاظ على مخطط قابل للتطبيق</p>
+                        <p><em>Devising and maintaining a workable scheme</em></p>
+                    </div>
+                    <div class="process-group">
+                        <h3>التنفيذ - Executing</h3>
+                        <p>تنسيق الأشخاص والموارد الأخرى</p>
+                        <p><em>Coordinating people and resources</em></p>
+                    </div>
+                    <div class="process-group">
+                        <h3>المراقبة والتحكم - Monitoring & Controlling</h3>
+                        <p>مراقبة وقياس التقدم مقابل الخطط</p>
+                        <p><em>Monitor and measure progress against plans</em></p>
+                    </div>
+                    <div class="process-group">
+                        <h3>الإغلاق - Closing</h3>
+                        <p>إضفاء الطابع الرسمي على قبول المشروع</p>
+                        <p><em>Formalizing acceptance of the project</em></p>
+                    </div>
+                </div>
+
+                <div class="interactive-diagram">
+                    <h3>النسبة المئوية للوقت المقضي في كل مجموعة عمليات</h3>
+                    <h4>Percentage of time spent on each process group</h4>
+                    <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin: 20px 0;">
+                        <div style="background: #ff6b6b; padding: 20px; border-radius: 10px; color: white; text-align: center;">
+                            <strong>البدء<br>5%</strong>
+                        </div>
+                        <div style="background: #4ecdc4; padding: 20px; border-radius: 10px; color: white; text-align: center;">
+                            <strong>التخطيط<br>25%</strong>
+                        </div>
+                        <div style="background: #45b7d1; padding: 20px; border-radius: 10px; color: white; text-align: center;">
+                            <strong>التنفيذ<br>50%</strong>
+                        </div>
+                        <div style="background: #f9ca24; padding: 20px; border-radius: 10px; color: white; text-align: center;">
+                            <strong>المراقبة<br>15%</strong>
+                        </div>
+                        <div style="background: #6c5ce7; padding: 20px; border-radius: 10px; color: white; text-align: center;">
+                            <strong>الإغلاق<br>5%</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mapping Section -->
+        <div id="mapping" class="content-section">
+            <div class="card">
+                <h2>2.4 ربط مجموعات العمليات بمجالات المعرفة</h2>
+                <h3>Mapping the Process Groups to the Knowledge Areas</h3>
+                
+                <p class="arabic-text">يمكنك ربط الأنشطة الرئيسية لكل مجموعة من مجموعات عمليات إدارة المشاريع في 10 مجالات معرفة إدارة المشاريع.</p>
+                <p class="english-text">You can map the main activities of each project management process group into the 10 project management knowledge areas.</p>
+
+                <div class="interactive-diagram">
+                    <h4>مجالات المعرفة العشرة - 10 Knowledge Areas</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 20px 0;">
+                        <div class="diagram-node">إدارة التكامل<br>Integration</div>
+                        <div class="diagram-node">إدارة النطاق<br>Scope</div>
+                        <div class="diagram-node">إدارة الجدولة<br>Schedule</div>
+                        <div class="diagram-node">إدارة التكلفة<br>Cost</div>
+                        <div class="diagram-node">إدارة الجودة<br>Quality</div>
+                        <div class="diagram-node">إدارة الموارد<br>Resource</div>
+                        <div class="diagram-node">إدارة التواصل<br>Communications</div>
+                        <div class="diagram-node">إدارة المخاطر<br>Risk</div>
+                        <div class="diagram-node">إدارة المشتريات<br>Procurement</div>
+                        <div class="diagram-node">إدارة أصحاب المصلحة<br>Stakeholder</div>
+                    </div>
+                </div>
+
+                <div class="timeline">
+                    <h4>تطبيق مجموعات العمليات - Process Groups Application</h4>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-number">1</div>
+                        <div class="timeline-content">
+                            <h4>مرحلة البدء - Initiating Processes</h4>
+                            <p class="arabic-text">تشمل عمليات البدء تعريف وترخيص مشروع أو مرحلة مشروع</p>
+                            <p class="english-text">Initiating processes include defining and authorizing a project or project phase</p>
+                            <ul>
+                                <li>تطوير ميثاق المشروع - Develop Project Charter</li>
+                                <li>تحديد أصحاب المصلحة - Identify Stakeholders</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-number">2</div>
+                        <div class="timeline-content">
+                            <h4>مرحلة التخطيط - Planning Processes</h4>
+                            <p class="arabic-text">تشمل عمليات التخطيط وضع والحفاظ على مخطط قابل للتطبيق لضمان أن المشروع يلبي احتياجات المنظمة</p>
+                            <p class="english-text">Planning processes include devising and maintaining a workable scheme to ensure the project addresses the organization's needs</p>
+                            <ul>
+                                <li>خطة إدارة النطاق - Scope Management Plan</li>
+                                <li>خطة إدارة الجدولة - Schedule Management Plan</li>
+                                <li>خطة إدارة التكلفة - Cost Management Plan</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-number">3</div>
+                        <div class="timeline-content">
+                            <h4>مرحلة التنفيذ - Executing Processes</h4>
+                            <p class="arabic-text">تشمل عمليات التنفيذ تنسيق الأشخاص والموارد الأخرى لتنفيذ الخطط المختلفة</p>
+                            <p class="english-text">Executing processes include coordinating people and other resources to carry out various plans</p>
+                            <ul>
+                                <li>الحصول على فريق المشروع وتطويره - Acquire and Develop Project Team</li>
+                                <li>تنفيذ ضمان الجودة - Perform Quality Assurance</li>
+                                <li>توزيع المعلومات - Distribute Information</li>
+                                <li>إدارة أصحاب المصلحة - Manage Stakeholders</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-number">4</div>
+                        <div class="timeline-content">
+                            <h4>مرحلة المراقبة والتحكم - Monitoring and Controlling</h4>
+                            <p class="arabic-text">يراقب مدير المشروع والموظفون التقدم مقابل الخطط ويتخذون إجراءات تصحيحية عند الضرورة</p>
+                            <p class="english-text">Project manager and staff monitor and measure progress against plans and take corrective action when necessary</p>
+                            <ul>
+                                <li>مراقبة أداء المشروع - Monitor Project Performance</li>
+                                <li>التحكم في التغييرات - Control Changes</li>
+                                <li>ضمان تحقيق أهداف المشروع - Ensure Project Objectives are Met</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-number">5</div>
+                        <div class="timeline-content">
+                            <h4>مرحلة الإغلاق - Closing Processes</h4>
+                            <p class="arabic-text">تشمل عمليات الإغلاق إضفاء الطابع الرسمي على قبول المشروع أو مرحلة المشروع وإنهائه بكفاءة</p>
+                            <p class="english-text">Closing processes include formalizing acceptance of the project or project phase and ending it efficiently</p>
+                            <ul>
+                                <li>الأنشطة الإدارية - Administrative Activities</li>
+                                <li>أرشفة ملفات المشروع - Archive Project Files</li>
+                                <li>إغلاق العقود - Close Out Contracts</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Summary Section -->
+        <div id="summary" class="content-section">
+            <div class="summary-box">
+                <h3>الملخص - Summary</h3>
+                <div class="summary-points">
+                    <div class="summary-point">
+                        <h4>مراحل المشروع</h4>
+                        <p class="arabic-text">تشمل مراحل المشروع المفهوم والتطوير والتنفيذ والإغلاق</p>
+                        <p class="english-text">The project phases include concept, development, implementation and close-out</p>
+                    </div>
+                    <div class="summary-point">
+                        <h4>نماذج SDLC</h4>
+                        <p class="arabic-text">بعض النماذج الشائعة لدورة حياة تطوير النظم</p>
+                        <p class="english-text">Some popular models of an SDLC</p>
+                    </div>
+                    <div class="summary-point">
+                        <h4>العمليات المترابطة</h4>
+                        <p class="arabic-text">إدارة المشاريع تتضمن عدداً من العمليات المترابطة</p>
+                        <p class="english-text">Project management involves a number of interlinked processes</p>
+                    </div>
+                    <div class="summary-point">
+                        <h4>5 مجموعات عمليات</h4>
+                        <p class="arabic-text">مجموعات عمليات إدارة المشاريع الخمس هي البدء والتخطيط والتنفيذ والمراقبة والتحكم والإغلاق</p>
+                        <p class="english-text">The 5 project management process groups are initiating, planning, executing, monitoring and controlling, and closing</p>
+                    </div>
+                    <div class="summary-point">
+                        <h4>الربط والتطبيق</h4>
+                        <p class="arabic-text">ربط الأنشطة الرئيسية لكل مجموعة عمليات إدارة المشاريع في 10 مجالات معرفة يوفر صورة كبيرة</p>
+                        <p class="english-text">Mapping the main activities of each process group into the 10 knowledge areas provides a big picture of project management activities</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>مفاهيم مهمة - Key Concepts</h2>
+                <div class="models-grid">
+                    <div class="model-card">
+                        <h3>التسليم - Deliverable</h3>
+                        <p class="arabic-text">منتج أو خدمة، مثل تقرير فني، جلسة تدريبية، قطعة أجهزة، أو جزء من كود البرمجيات، يتم إنتاجها أو تقديمها كجزء من مشروع</p>
+                        <p class="english-text">A product or service, such as a technical report, a training session, a piece of hardware, or a segment of software code, produced or provided as part of a project</p>
+                    </div>
+                    <div class="model-card">
+                        <h3>حالة العمل - Business Case</h3>
+                        <p class="arabic-text">وصف الحاجة للمشروع والمفاهيم الأساسية الكامنة</p>
+                        <p class="english-text">Describing the need for the project and basic underlying concepts</p>
+                    </div>
+                    <div class="model-card">
+                        <h3>هيكل تقسيم العمل - WBS</h3>
+                        <p class="arabic-text">يحدد عمل المشروع من خلال تقسيم أنشطة العمل إلى مستويات مختلفة من المهام</p>
+                        <p class="english-text">Work Breakdown Structure outlines project work by decomposing work activities into different levels of tasks</p>
+                    </div>
+                    <div class="model-card">
+                        <h3>تقرير الدروس المستفادة</h3>
+                        <p class="arabic-text">يجب على فريق المشروع توثيق تجاربه في المشروع في تقرير الدروس المستفادة</p>
+                        <p class="english-text">The project team should document its experiences on the project in a lessons-learned report</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="interactive-diagram">
+                <h3>مخطط تدفق دورة حياة المشروع الكاملة</h3>
+                <h4>Complete Project Life Cycle Flow</h4>
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; margin: 30px 0;">
+                    <div style="background: linear-gradient(135deg, #84fab0, #8fd3f4); padding: 20px; border-radius: 15px; flex: 1; min-width: 200px; text-align: center;">
+                        <h4>المفهوم<br>CONCEPT</h4>
+                        <p>نظرة عامة على العمل</p>
+                        <p>حالة العمل</p>
+                        <p>WBS أولي</p>
+                    </div>
+                    <div style="font-size: 2rem; color: #667eea;">→</div>
+                    <div style="background: linear-gradient(135deg, #ffecd2, #fcb69f); padding: 20px; border-radius: 15px; flex: 1; min-width: 200px; text-align: center;">
+                        <h4>التطوير<br>DEVELOPMENT</h4>
+                        <p>خطط إدارة المشروع</p>
+                        <p>تقدير دقيق للتكلفة</p>
+                        <p>WBS شامل</p>
+                    </div>
+                    <div style="font-size: 2rem; color: #667eea;">→</div>
+                    <div style="background: linear-gradient(135deg, #a8edea, #fed6e3); padding: 20px; border-radius: 15px; flex: 1; min-width: 200px; text-align: center;">
+                        <h4>التنفيذ<br>IMPLEMENTATION</h4>
+                        <p>تقدير نهائي للتكلفة</p>
+                        <p>تسليم العمل</p>
+                        <p>تقارير الأداء</p>
+                    </div>
+                    <div style="font-size: 2rem; color: #667eea;">→</div>
+                    <div style="background: linear-gradient(135deg, #d299c2, #fef9d7); padding: 20px; border-radius: 15px; flex: 1; min-width: 200px; text-align: center;">
+                        <h4>الإغلاق<br>CLOSE-OUT</h4>
+                        <p>إكمال جميع الأعمال</p>
+                        <p>قبول المشروع</p>
+                        <p>الدروس المستفادة</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showSection(sectionId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.content-section');
+            sections.forEach(section => section.classList.remove('active'));
+            
+            // Remove active class from all tabs
+            const tabs = document.querySelectorAll('.nav-tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            
+            // Show selected section
+            document.getElementById(sectionId).classList.add('active');
+            
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+            
+            // Animate timeline items if in processes section
+            if (sectionId === 'processes') {
+                animateTimelineItems();
+            }
+        }
+
+        function showPhaseDetails(phase) {
+            const phases = {
+                concept: {
+                    title: 'مرحلة المفهوم - Concept Phase',
+                    details: `
+                        <h4>الأنشطة الرئيسية:</h4>
+                        <ul>
+                            <li>إنشاء نظرة عامة على العمل المطلوب من قِبل المديرين</li>
+                            <li>حالة عمل تصف الحاجة للمشروع والمفاهيم الأساسية</li>
+                            <li>هيكل تقسيم العمل (WBS) الأولي</li>
+                        </ul>
+                        <h4>Key Activities:</h4>
+                        <ul>
+                            <li>Overview of required work created by managers</li>
+                            <li>Business case describing project need and basic concepts</li>
+                            <li>Initial Work Breakdown Structure (WBS)</li>
+                        </ul>
+                    `
+                },
+                development: {
+                    title: 'مرحلة التطوير - Development Phase',
+                    details: `
+                        <h4>الأنشطة الرئيسية:</h4>
+                        <ul>
+                            <li>خطط إدارة المشروع</li>
+                            <li>تقدير أكثر دقة للتكلفة</li>
+                            <li>هيكل تقسيم عمل أكثر شمولية</li>
+                            <li>تحديد نوع الأجهزة والبرمجيات المطلوبة</li>
+                        </ul>
+                        <h4>Key Activities:</h4>
+                        <ul>
+                            <li>Project management plans</li>
+                            <li>More accurate cost estimate</li>
+                            <li>More thorough WBS</li>
+                            <li>Decide on hardware and software requirements</li>
+                        </ul>
+                    `
+                },
+                implementation: {
+                    title: 'مرحلة التنفيذ - Implementation Phase',
+                    details: `
+                        <h4>الأنشطة الرئيسية:</h4>
+                        <ul>
+                            <li>تقدير نهائي للتكلفة</li>
+                            <li>تسليم العمل المطلوب</li>
+                            <li>تقديم تقارير الأداء لأصحاب المصلحة</li>
+                            <li>الحصول على الأجهزة والبرمجيات</li>
+                            <li>تقديم التدريب للمستخدم</li>
+                        </ul>
+                        <h4>Key Activities:</h4>
+                        <ul>
+                            <li>Definitive cost estimate</li>
+                            <li>Deliver required work</li>
+                            <li>Provide performance reports to stakeholders</li>
+                            <li>Obtain required hardware and software</li>
+                            <li>Provide training to users</li>
+                        </ul>
+                    `
+                },
+                closeout: {
+                    title: 'مرحلة الإغلاق - Close-out Phase',
+                    details: `
+                        <h4>الأنشطة الرئيسية:</h4>
+                        <ul>
+                            <li>توثيق التجارب في تقرير الدروس المستفادة</li>
+                            <li>إكمال جميع الأعمال</li>
+                            <li>قبول العملاء للمشروع كاملاً</li>
+                            <li>الأنشطة الإدارية</li>
+                            <li>أرشفة ملفات المشروع</li>
+                        </ul>
+                        <h4>Key Activities:</h4>
+                        <ul>
+                            <li>Document experiences in lessons-learned report</li>
+                            <li>Complete all work</li>
+                            <li>Customer acceptance of entire project</li>
+                            <li>Administrative activities</li>
+                            <li>Archive project files</li>
+                        </ul>
+                    `
+                }
+            };
+
+            if (phases[phase]) {
+                alert(phases[phase].title + '\n\n' + phases[phase].details.replace(/<[^>]*>/g, '').replace(/\n\s+/g, '\n'));
+            }
+        }
+
+        function animateTimelineItems() {
+            const timelineItems = document.querySelectorAll('.timeline-item');
+            timelineItems.forEach((item, index) => {
+                setTimeout(() => {
+                    item.style.opacity = '1';
+                }, index * 200);
+            });
+        }
+
+        // Add floating animation to elements
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.card');
+            cards.forEach((card, index) => {
+                card.style.animationDelay = (index * 0.1) + 's';
+            });
+
+            // Initialize progress bars
+            const progressBars = document.querySelectorAll('.progress-fill');
+            setTimeout(() => {
+                progressBars.forEach(bar => {
+                    bar.style.width = bar.style.width || '100%';
+                });
+            }, 1000);
+        });
+
+        // Add interactive hover effects
+        document.querySelectorAll('.diagram-node').forEach(node => {
+            node.addEventListener('click', function() {
+                this.style.transform = 'scale(1.2)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1.1)';
+                }, 200);
+            });
+        });
+
+        // Add smooth scrolling for better UX
+        document.querySelectorAll('.nav-tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                document.querySelector('.container').scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
