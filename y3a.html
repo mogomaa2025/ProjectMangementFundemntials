@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إدارة البرامج ومحافظ المشاريع (Portfolio)</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #f8fafc;
+            --accent-color: #10b981;
+            --warning-color: #f59e0b;
+            --success-color: #22c55e;
+            --info-color: #3b82f6;
+            --text-dark: #1e293b;
+            --text-light: #64748b;
+            --border-color: #e2e8f0;
+            --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --card-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --hover-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: var(--secondary-color);
+            color: var(--text-dark);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        .nav-container {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .nav-brand {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--text-light);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-menu a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: var(--bg-gradient);
+            color: white;
+            padding: 120px 0 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="rgba(255,255,255,0.1)" points="0,0 1000,300 1000,1000 0,700"/></svg>');
+            background-size: cover;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .hero .subtitle {
+            font-size: 1.4rem;
+            opacity: 0.9;
+            margin-bottom: 40px;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 60px 0;
+        }
+
+        .section {
+            margin-bottom: 80px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: var(--card-shadow);
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--bg-gradient);
+        }
+        
+        h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        h3 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 20px;
+        }
+        
+        /* Chapter Sections */
+        .chapter-section {
+            border-right: 4px solid var(--primary-color);
+            padding-right: 30px;
+            margin: 50px 0;
+        }
+
+        .chapter-title {
+            background: var(--bg-gradient);
+            color: white;
+            padding: 20px 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+        
+        .example-box {
+            background-color: #e6f7ff;
+            border-right: 5px solid var(--info-color);
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+        
+        .example-box h4 {
+            color: var(--info-color);
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+        }
+        
+        .example-box ul {
+            list-style-type: none;
+            padding-right: 0;
+        }
+
+        .example-box li {
+            position: relative;
+            padding-right: 25px;
+            margin-bottom: 10px;
+        }
+
+        .example-box li::before {
+            content: '✓';
+            color: var(--info-color);
+            position: absolute;
+            right: 0;
+            font-weight: bold;
+        }
+
+        .note-box {
+            background-color: #fffbeb;
+            border-right: 5px solid var(--warning-color);
+            padding: 25px;
+            margin: 40px 0;
+            border-radius: 8px;
+        }
+        .note-box h4 {
+            color: var(--warning-color);
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+        }
+        .note-box ul {
+            list-style: none;
+            padding-right: 0;
+        }
+        .note-box li {
+             position: relative;
+            padding-right: 25px;
+        }
+        .note-box li::before {
+            content: '▸';
+            color: var(--warning-color);
+            position: absolute;
+            right: 0;
+        }
+
+        /* Summary Box */
+        .summary-box {
+            background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 16px;
+            text-align: center;
+            margin: 50px 0;
+        }
+        
+        /* Visual Separator */
+        .visual-separator {
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            border-radius: 2px;
+            margin: 50px 0;
+        }
+        
+        /* Scroll to Top */
+        .scroll-top {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: var(--primary-color);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: var(--card-shadow);
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .scroll-top.visible {
+            opacity: 1;
+        }
+
+        .scroll-top:hover {
+            background: var(--accent-color);
+            transform: translateY(-3px);
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-container">
+        <nav class="nav">
+            <div class="nav-brand">
+                <i class="fas fa-sitemap"></i> دليل إدارة الـ Portfolio
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#overview">نظرة عامة</a></li>
+                <li><a href="#programs">البرامج (Programs)</a></li>
+                <li><a href="#portfolio">إدارة الـ Portfolio</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>شرح جزء 1.3: Program and Project Portfolio Management</h1>
+                <p class="subtitle">أهلاً بيكم يا شباب! هنتكلم عن مفهومين أساسيين بيساعدوا أي منظمة إنها تحقق أهدافها الكبيرة واستراتيجياتها بنجاح.</p>
+                <div style="font-size: 4rem; margin-top: 20px;">
+                    <i class="fas fa-sitemap"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container main-content">
+        
+        <section id="programs" class="section">
+            <div class="chapter-section">
+                <div class="chapter-title">
+                    1.3 (أ): إيه هو الـ Program؟ (البرنامج)
+                </div>
+                
+                <div class="card">
+                    <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-light); margin-bottom: 30px;">
+                        ببساطة كده، البرنامج هو <strong>"مجموعة من المشاريع المترابطة والأنشطة اللي بتدار بشكل منسق"</strong>. الهدف من التنسيق ده هو تحقيق <strong>فوائد وتحكم</strong> مش ممكن نحققها لو كنا بندير كل مشروع لوحده بشكل منفصل. يعني تخيل إن عندك هدف كبير محتاج أكتر من مشروع عشان يتحقق، والمشاريع دي كلها مرتبطة ببعضها. هنا يجي دور الـ Program اللي بيجمع المشاريع دي تحت مظلة واحدة ويديرها كلها مع بعض.
+                    </p>
+
+                    <div class="example-box">
+                        <h4><i class="fas fa-mobile-alt" style="color: var(--info-color);"></i> مثال عملي على الـ Program: إطلاق سلسلة هواتف ذكية جديدة</h4>
+                        <p>تخيل شركة تكنولوجيا قررت تطلق سلسلة جديدة ومبتكرة من الهواتف الذكية (مثلاً: "SmartPhone X Series"). ده هدف كبير، وعشان يتحقق، الشركة هتحتاج مجموعة من المشاريع المرتبطة ببعضها، ودي ممكن نعتبرها Program:</p>
+                        <ul>
+                            <li><strong>مشروع تطوير الأجهزة (Hardware):</strong> لتصميم وتصنيع مكونات الهاتف (الشاشة، الكاميرا، المعالج).</li>
+                            <li><strong>مشروع تطوير البرمجيات (Software):</strong> لتطوير نظام التشغيل وواجهة المستخدم والتطبيقات الأساسية.</li>
+                            <li><strong>مشروع تجهيز خطوط الإنتاج:</strong> لتجهيز المصانع والآلات اللازمة لإنتاج الهواتف بكميات كبيرة.</li>
+                            <li><strong>مشروع حملة التسويق والإطلاق:</strong> لإعداد الخطط التسويقية والإعلانات وحفل إطلاق المنتج.</li>
+                        </ul>
+                        <p>كل مشروع من دول لوحده ممكن ينجح، لكن عشان السلسلة كلها تنجح وتطلع للسوق في ميعادها، لازم يتم إدارة المشاريع دي كلها كـ Program واحد ومنسق. مدير البرنامج هنا هيضمن إن كل الأجزاء دي بتتكامل مع بعضها عشان نوصل لأقصى فائدة.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="visual-separator"></div>
+
+        <section id="portfolio" class="section">
+            <div class="chapter-section">
+                <div class="chapter-title">
+                    1.3 (ب): إيه هو الـ Project Portfolio Management؟
+                </div>
+                
+                <div class="card">
+                    <p style="font-size: 1.1rem; margin-bottom: 30px; color: var(--text-light);">
+                        بعد ما فهمنا الـ Program، نيجي للـ <strong>Project Portfolio Management</strong>. الشركات الكبيرة اللي عندها موارد محدودة وأفكار ومشاريع كتير محتاجة تختار إيه اللي هتشتغل عليه وإيه اللي هتأجله. الـ Portfolio Management هو اللي بيساعدها تاخد القرارات الاستراتيجية دي. تعريفه هو <strong>"العملية المستمرة لاختيار وإدارة أفضل مجموعة من مبادرات المشاريع اللي بتحقق أقصى قيمة تجارية (business value) للشركة"</strong>.
+                    </p>
+                    
+                    <div class="example-box">
+                        <h4><i class="fas fa-globe-americas" style="color: var(--info-color);"></i> مثال عملي على الـ Portfolio Management: شركة متعددة الجنسيات</h4>
+                        <p>تخيل شركة عالمية كبيرة عندها ميزانية وموارد محدودة وعندها أفكار ومشاريع محتملة كتير، زي:</p>
+                        <ul>
+                            <li><strong>مشروع (أ):</strong> تطوير نظام موارد بشرية داخلي جديد.</li>
+                            <li><strong>برنامج (ب):</strong> التوسع في سوق جغرافي جديد (وده يشمل مشاريع فرعية للقوانين، التسويق، اللوجستيات).</li>
+                            <li><strong>مشروع (ج):</strong> بحث وتطوير لمواد تغليف صديقة للبيئة.</li>
+                            <li><strong>مشروع (د):</strong> تجديد مقر الشركة الرئيسي.</li>
+                        </ul>
+                        <p>مش هينفع الشركة تعمل كل المشاريع دي في نفس الوقت. هنا يجي دور إدارة الـ Portfolio. مدير المحفظة هيبص على كل مشروع ويقيمه حسب توافقه مع أهداف الشركة الاستراتيجية (هل هيزود الأرباح؟ هل هيعزز صورة الشركة؟). وبناءً عليه، هيختار <strong>المجموعة الأمثل</strong> من المشاريع والبرامج اللي هتدي الشركة <strong>أعلى عائد وأكبر قيمة</strong>، ويوزع عليها الموارد بشكل استراتيجي.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <div class="note-box">
+            <h4><i class="fas fa-clipboard-check" style="color: var(--warning-color);"></i> ملخص سريع: الفرق بين الـ Program والـ Portfolio</h4>
+            <ul>
+                <li>الـ <strong>Program</strong>: بيركز على <strong>تنسيق وإدارة مجموعة من المشاريع المترابطة ببعضها</strong> لتحقيق هدف كبير ومشترك.</li>
+                <li>الـ <strong>Portfolio Management</strong>: بيركز على <strong>اختيار وإدارة المجموعة الأنسب من كل المشاريع والبرامج</strong> المتاحة في الشركة، عشان تضمن إنها بتحقق أقصى قيمة للبيزنس وتدعم الأهداف الاستراتيجية الكلية.</li>
+            </ul>
+        </div>
+
+        <div class="summary-box">
+            <h2><i class="fas fa-graduation-cap"></i> إتقان إدارة المشاريع الاستراتيجية!</h2>
+            <p style="font-size: 1.2rem; opacity: 0.95; margin: 20px 0;">
+                دلوقتي أنت فهمت إزاي الـ Programs والـ Portfolio Management بيربطوا بين المشاريع الفردية ونجاح الشركة. الأساليب دي بتضمن إن موارد الشركة بيتم استثمارها بالشكل الأمثل لتحقيق أقصى قيمة للبيزنس.
+            </p>
+        </div>
+    </div>
+
+    <div class="scroll-top" id="scrollTop">
+        <i class="fas fa-chevron-up"></i>
+    </div>
+
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        const scrollTopBtn = document.getElementById('scrollTop');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollTopBtn.classList.add('visible');
+            } else {
+                scrollTopBtn.classList.remove('visible');
+            }
+        });
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>

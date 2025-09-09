@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مهنة إدارة المشاريع</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #f8fafc;
+            --accent-color: #10b981;
+            --warning-color: #f59e0b;
+            --success-color: #22c55e;
+            --info-color: #3b82f6;
+            --text-dark: #1e293b;
+            --text-light: #64748b;
+            --border-color: #e2e8f0;
+            --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --card-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --hover-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: var(--secondary-color);
+            color: var(--text-dark);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        .nav-container {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .nav-brand {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--text-light);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-menu a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: var(--bg-gradient);
+            color: white;
+            padding: 120px 0 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="rgba(255,255,255,0.1)" points="0,0 1000,300 1000,1000 0,700"/></svg>');
+            background-size: cover;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .hero .subtitle {
+            font-size: 1.4rem;
+            opacity: 0.9;
+            margin-bottom: 40px;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 60px 0;
+        }
+
+        .section {
+            margin-bottom: 80px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: var(--card-shadow);
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--bg-gradient);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--hover-shadow);
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        h3 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 20px;
+        }
+
+        /* Chapter Sections */
+        .chapter-section {
+            border-right: 4px solid var(--primary-color);
+            padding-right: 30px;
+            margin: 50px 0;
+        }
+
+        .chapter-title {
+            background: var(--bg-gradient);
+            color: white;
+            padding: 20px 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+        
+        /* Growth Chart */
+        .chart-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 40px 0;
+            position: relative;
+        }
+
+        .chart-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 16px;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.3s ease;
+        }
+
+        .chart-image:hover {
+            transform: scale(1.02);
+        }
+        
+        /* PMI Stats */
+        .pmi-stats {
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.1) 0%, rgba(37, 99, 235, 0.05) 100%);
+            border: 2px solid var(--primary-color);
+            border-radius: 16px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+
+        .pmi-stats h4 {
+            color: var(--primary-color);
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .stat-item {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+        
+        /* Organizations Grid */
+        .orgs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+
+        .org-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+            text-align: center;
+            transition: all 0.3s ease;
+            border-top: 4px solid var(--primary-color);
+        }
+
+        .org-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--hover-shadow);
+        }
+
+        .org-card:nth-child(1) { border-top-color: #3b82f6; }
+        .org-card:nth-child(2) { border-top-color: #10b981; }
+        .org-card:nth-child(3) { border-top-color: #f59e0b; }
+
+        .org-card i {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .org-card:nth-child(1) i { color: #3b82f6; }
+        .org-card:nth-child(2) i { color: #10b981; }
+        .org-card:nth-child(3) i { color: #f59e0b; }
+
+        .org-card h5 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--text-dark);
+        }
+
+        .org-card p {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+        
+        /* PMP Benefits */
+        .pmp-benefits {
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.1) 0%, rgba(34, 197, 94, 0.05) 100%);
+            border: 2px solid var(--success-color);
+            border-radius: 16px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+
+        .pmp-benefits h4 {
+            color: var(--success-color);
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        /* Software Tools */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .tool-card {
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: var(--card-shadow);
+            transition: all 0.3s ease;
+            position: relative;
+            border-right: 5px solid var(--primary-color);
+        }
+
+        .tool-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--hover-shadow);
+        }
+
+        .tool-card.low-end { border-right-color: #22c55e; }
+        .tool-card.mid-range { border-right-color: #f59e0b; }
+        .tool-card.high-end { border-right-color: #ef4444; }
+
+        .tool-card .icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .tool-card.low-end .icon { background: #22c55e; }
+        .tool-card.mid-range .icon { background: #f59e0b; }
+        .tool-card.high-end .icon { background: #ef4444; }
+
+        .tool-card h4 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 15px;
+        }
+
+        .tool-card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 10px;
+        }
+        
+        /* Summary Box */
+        .summary-box {
+            background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 16px;
+            text-align: center;
+            margin: 50px 0;
+        }
+        
+        /* Visual Separator */
+        .visual-separator {
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            border-radius: 2px;
+            margin: 50px 0;
+        }
+
+        /* Scroll to Top */
+        .scroll-top {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: var(--primary-color);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: var(--card-shadow);
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .scroll-top.visible {
+            opacity: 1;
+        }
+
+        .scroll-top:hover {
+            background: var(--accent-color);
+            transform: translateY(-3px);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .card {
+                padding: 25px;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            .tools-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-container">
+        <nav class="nav">
+            <div class="nav-brand">
+                <i class="fas fa-certificate"></i> دليل مهنة إدارة المشاريع
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#pmi">معهد PMI</a></li>
+                <li><a href="#certification">شهادة PMP</a></li>
+                <li><a href="#software">برامج إدارة المشاريع</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>الفصل 1.5: مهنة إدارة المشاريع</h1>
+                <p class="subtitle">معهد PMI، الشهادات، وأدوات البرامج للنجاح المهني</p>
+                <div style="font-size: 4rem; margin-top: 20px;">
+                    <i class="fas fa-industry"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container main-content">
+        
+        <section id="pmi" class="section">
+            <div class="chapter-section">
+                <div class="chapter-title">
+                    1.5 (أ): معهد إدارة المشاريع (PMI)
+                </div>
+                
+                <div class="card">
+                    <p style="font-size: 1.1rem; margin-bottom: 30px; color: var(--text-light);">
+                        <strong>معهد إدارة المشاريع (PMI)</strong>، هو جمعية مهنية دولية لمديري المشاريع اتأسست سنة 1969، وفضلت تجذب وتحافظ على أعضائها، ووصل عدد أعضائها لـ <strong>أكتر من 449,000 عضو حول العالم في أواخر 2014</strong>.
+                    </p>
+
+                    <div class="pmi-stats">
+                        <h4><i class="fas fa-chart-bar"></i> إحصائيات نمو معهد PMI</h4>
+                        <p style="margin: 15px 0; line-height: 1.7;">
+                            معهد PMI شاف نمو ملحوظ من يوم تأسيسه، وأصبح المنظمة المهنية الرائدة في العالم لممارسي إدارة المشاريع.
+                        </p>
+                        <div class="stats-grid">
+                            <div class="stat-item"><div class="stat-number">1969</div><div class="stat-label">سنة التأسيس</div></div>
+                            <div class="stat-item"><div class="stat-number">+449 ألف</div><div class="stat-label">عضو (2014)</div></div>
+                            <div class="stat-item"><div class="stat-number">+180</div><div class="stat-label">دولة</div></div>
+                            <div class="stat-item"><div class="stat-number">+700 ألف</div><div class="stat-label">حاملي شهادة PMP حالياً</div></div>
+                        </div>
+                    </div>
+
+                    <h3>جمعيات مهنية أخرى لإدارة المشاريع:</h3>
+                    <div class="orgs-grid">
+                        <div class="org-card">
+                            <i class="fas fa-globe"></i>
+                            <h5>معهد إدارة المشاريع (PMI)</h5>
+                            <p>المنظمة الرائدة عالمياً في إدارة المشاريع، تأسست عام 1969. تقدم شهادة PMP ودليل PMBOK كمعايير للصناعة.</p>
+                        </div>
+                        <div class="org-card">
+                            <i class="fas fa-users"></i>
+                            <h5>الجمعية الدولية لإدارة المشاريع (IPMA)</h5>
+                            <p>اتحاد للجمعيات الوطنية لإدارة المشاريع، يروج للشهادات القائمة على الكفاءة والتطوير.</p>
+                        </div>
+                        <div class="org-card">
+                            <i class="fas fa-flag"></i>
+                            <h5>جمعية إدارة المشاريع (APM)</h5>
+                            <p>هيئة مهنية مقرها المملكة المتحدة لإدارة المشاريع، تقدم مؤهلات ومصادر للتطوير المهني.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="certification" class="section">
+            <div class="chapter-section">
+                <div class="chapter-title">
+                    1.5 (ب): شهادات إدارة المشاريع
+                </div>
+                
+                <div class="card">
+                    <p style="font-size: 1.1rem; margin-bottom: 30px; color: var(--text-light);">
+                        <strong>الشهادات المهنية عامل مهم في الاعتراف بالجودة.</strong> معهد PMI بيقدم شهادة كـ <strong>محترف إدارة مشاريع (PMP)</strong> — وده شخص وثّق خبرة وتعليم كافيين، ووافق يتبع مدونة السلوك المهني لمعهد PMI، وأثبت معرفته عن طريق اجتياز امتحان شامل.
+                    </p>
+
+                    <div class="chart-visual">
+                        <img src="https://i.ibb.co/zhpCnhW7/image.png" alt="رسم بياني يوضح النمو في شهادة PMP من 1993-2014" class="chart-image" />
+                    </div>
+                    <p style="margin: 20px 0; color: var(--text-light); text-align: center;"><em>النمو في شهادة PMP، 1993–2014: يوضح نمو هائل من 1,000 لأكتر من 600,000 محترف معتمد.</em></p>
+
+                    <div class="pmp-benefits">
+                        <h4><i class="fas fa-trophy"></i> فوايد شهادة PMP</h4>
+                        <p style="margin: 15px 0; line-height: 1.7;"><strong>بعض الشركات بتشترط إن كل مديري المشاريع يكونوا حاصلين على شهادة PMP.</strong></p>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 20px;">
+                            <div style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);"><i class="fas fa-dollar-sign" style="font-size: 1.5rem; color: var(--success-color); margin-bottom: 10px;"></i><h6 style="color: var(--text-dark); margin-bottom: 8px;">مرتب أعلى</h6><p style="font-size: 0.9rem; color: var(--text-light);">حاملو PMP يكسبون 20-25% أكثر من غير المعتمدين</p></div>
+                            <div style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);"><i class="fas fa-handshake" style="font-size: 1.5rem; color: var(--success-color); margin-bottom: 10px;"></i><h6 style="color: var(--text-dark); margin-bottom: 8px;">اعتراف مهني</h6><p style="font-size: 0.9rem; color: var(--text-light);">شهادة معترف بها عالمياً تظهر الخبرة</p></div>
+                            <div style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);"><i class="fas fa-rocket" style="font-size: 1.5rem; color: var(--success-color); margin-bottom: 10px;"></i><h6 style="color: var(--text-dark); margin-bottom: 8px;">تقدم وظيفي</h6><p style="font-size: 0.9rem; color: var(--text-light);">تفتح الأبواب لأدوار عليا في إدارة المشاريع</p></div>
+                        </div>
+                    </div>
+
+                    <h3>متطلبات شهادة PMP:</h3>
+                    <div style="background: white; padding: 25px; border-radius: 12px; box-shadow: var(--card-shadow); margin: 30px 0;">
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+                            <div>
+                                <h5 style="color: var(--primary-color); margin-bottom: 10px;"><i class="fas fa-graduation-cap"></i> التعليم والخبرة</h5>
+                                <ul style="list-style: none; padding: 0; line-height: 2;">
+                                    <li style="position: relative; padding-right: 20px;"><i class="fas fa-check" style="position: absolute; right: 0; color: var(--success-color); font-size: 0.8rem; top: 12px;"></i>شهادة جامعية + 4,500 ساعة خبرة</li>
+                                    <li style="position: relative; padding-right: 20px;"><i class="fas fa-check" style="position: absolute; right: 0; color: var(--success-color); font-size: 0.8rem; top: 12px;"></i>أو شهادة ثانوية + 7,500 ساعة خبرة</li>
+                                    <li style="position: relative; padding-right: 20px;"><i class="fas fa-check" style="position: absolute; right: 0; color: var(--success-color); font-size: 0.8rem; top: 12px;"></i>35 ساعة تعليم في إدارة المشاريع</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h5 style="color: var(--primary-color); margin-bottom: 10px;"><i class="fas fa-file-alt"></i> الامتحان والأخلاقيات</h5>
+                                <ul style="list-style: none; padding: 0; line-height: 2;">
+                                    <li style="position: relative; padding-right: 20px;"><i class="fas fa-check" style="position: absolute; right: 0; color: var(--success-color); font-size: 0.8rem; top: 12px;"></i>اجتياز امتحان شامل من 180 سؤال</li>
+                                    <li style="position: relative; padding-right: 20px;"><i class="fas fa-check" style="position: absolute; right: 0; color: var(--success-color); font-size: 0.8rem; top: 12px;"></i>الموافقة على مدونة السلوك المهني لـ PMI</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="visual-separator"></div>
+
+        <section id="software" class="section">
+            <div class="chapter-section">
+                <div class="chapter-title">
+                    1.5 (ج): برامج إدارة المشاريع
+                </div>
+                
+                <div class="card">
+                    <p style="font-size: 1.1rem; margin-bottom: 30px; color: var(--text-light);">
+                        <strong>أدوات السوفتوير دي ممكن تتقسم لتلات فئات عامة</strong> على أساس الوظائف والسعر، وده بيوفر خيارات للشركات بكل الأحجام.
+                    </p>
+
+                    <div class="tools-grid">
+                        <div class="tool-card low-end">
+                            <div class="icon"><i class="fas fa-chart-simple"></i></div>
+                            <h4>الأدوات البسيطة (Low-End)</h4>
+                            <p><strong>بتقدم مميزات أساسية</strong> وسعرها أقل من 200 دولار للمستخدم. مناسبة <strong>للمشاريع الصغيرة والمستخدم الواحد</strong>.</p>
+                            <div style="background: rgba(0,0,0,0.05); padding: 15px; border-radius: 8px; margin-top: 15px;"><h6 style="color: var(--text-dark); margin-bottom: 8px;"><i class="fas fa-tools"></i> المميزات الأساسية:</h6><ul style="list-style: none; padding: 0; line-height: 1.8;"><li style="font-size: 0.9rem; margin-bottom: 5px; padding-right: 15px; position: relative;"><i class="fas fa-check" style="position: absolute; right: 0; color: var(--success-color); font-size: 0.8rem; top: 8px;"></i>إنشاء Gantt chart أساسي</li><li style="font-size: 0.9rem; margin-bottom: 5px; padding-right: 15px; position: relative;"><i class="fas fa-check" style="position: absolute; right: 0; color: var(--success-color); font-size: 0.8rem; top: 8px;"></i>جدولة وتتبع المهام</li></ul></div>
+                        </div>
+
+                        <div class="tool-card mid-range">
+                            <div class="icon"><i class="fas fa-project-diagram"></i></div>
+                            <h4>الأدوات المتوسطة (Mid-Range)</h4>
+                            <p><strong>بتتعامل مع مشاريع أكبر ومستخدمين متعددين</strong> وأسعارها بين 200 و 1,000 دولار للمستخدم. تنتج <strong>Gantt charts و Network diagrams</strong>.</p>
+                             <div style="background: rgba(0,0,0,0.05); padding: 15px; border-radius: 8px; margin-top: 15px;"><h6 style="color: var(--text-dark); margin-bottom: 8px;"><i class="fas fa-tools"></i> المميزات الأساسية:</h6><ul style="list-style: none; padding: 0; line-height: 1.8;"><li style="font-size: 0.9rem; margin-bottom: 5px; padding-right: 15px; position: relative;"><i class="fas fa-check" style="position: absolute; right: 0; color: var(--warning-color); font-size: 0.8rem; top: 8px;"></i>مخططات Gantt متقدمة</li><li style="font-size: 0.9rem; margin-bottom: 5px; padding-right: 15px; position: relative;"><i class="fas fa-check" style="position: absolute; right: 0; color: var(--warning-color); font-size: 0.8rem; top: 8px;"></i>مخططات الشبكة والمسار الحرج</li></ul></div>
+                        </div>
+
+                        <div class="tool-card high-end">
+                            <div class="icon"><i class="fas fa-building"></i></div>
+                            <h4>الأدوات المتقدمة (High-End)</h4>
+                            <p><strong>برامج على مستوى المؤسسة (enterprise)</strong> بقدرات قوية للمشاريع الضخمة. بها وظائف <strong>لإدارة المحافظ (portfolio)</strong>.</p>
+                             <div style="background: rgba(0,0,0,0.05); padding: 15px; border-radius: 8px; margin-top: 15px;"><h6 style="color: var(--text-dark); margin-bottom: 8px;"><i class="fas fa-tools"></i> المميزات الأساسية:</h6><ul style="list-style: none; padding: 0; line-height: 1.8;"><li style="font-size: 0.9rem; margin-bottom: 5px; padding-right: 15px; position: relative;"><i class="fas fa-check" style="position: absolute; right: 0; color: #ef4444; font-size: 0.8rem; top: 8px;"></i>إدارة محافظ المشاريع</li><li style="font-size: 0.9rem; margin-bottom: 5px; padding-right: 15px; position: relative;"><i class="fas fa-check" style="position: absolute; right: 0; color: #ef4444; font-size: 0.8rem; top: 8px;"></i>إدارة الموارد عبر المشاريع</li></ul></div>
+                        </div>
+                    </div>
+
+                    <h3>Gantt Charts - أساس جدولة المشاريع:</h3>
+                    <div class="chart-visual">
+                        <img src="https://i.ibb.co/m5KzyNxR/image.png" alt="نموذج لـ Gantt Chart" class="chart-image" />
+                    </div>
+                    <p style="margin: 20px 0; color: var(--text-light); text-align: center;"><em>الـ Gantt chart هو شكل معياري لعرض معلومات الجدول الزمني للمشروع.</em></p>
+
+                    <h3>Network Diagrams - تبعية المهام والمسار الحرج:</h3>
+                    <div class="chart-visual">
+                        <img src="https://www.monday.com/blog/wp-content/uploads/2021/02/pasted-image-0-54.png" alt="مخطط شبكة يوضح المسار الحرج" class="chart-image" />
+                    </div>
+                    <p style="margin: 20px 0; color: var(--text-light); text-align: center;"><em>مخططات الشبكة توضح المهام بالترتيب الذي يجب أن تكتمل به، وتظهر الاعتماديات والمسار الحرج.</em></p>
+                    
+                    <div style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(16, 185, 129, 0.05) 100%); border: 2px solid var(--accent-color); border-radius: 16px; padding: 25px; margin: 30px 0;">
+                        <h4 style="color: var(--accent-color); margin-bottom: 15px;"><i class="fas fa-lightbulb"></i> اختيار الأداة المناسبة</h4>
+                        <p style="color: var(--text-dark); line-height: 1.7;">يعتمد الاختيار بين الأدوات على <strong>مدى تعقيد المشروع، حجم الفريق، الميزانية، واحتياجات المؤسسة</strong>. يجب على الطلاب البدء بالأدوات البسيطة لفهم المفاهيم الأساسية قبل التقدم إلى حلول المؤسسات.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="visual-separator"></div>
+        
+        <div class="summary-box">
+            <h2><i class="fas fa-graduation-cap"></i> إتقان مهنة إدارة المشاريع!</h2>
+            <p style="font-size: 1.2rem; opacity: 0.95; margin: 20px 0;">
+                أنت الآن فاهم المشهد المهني لإدارة المشاريع، من شهادات PMI لفئات أدوات السوفتوير. هذه المعرفة تؤهلك للتطوير المهني واختيار الأدوات المناسبة لنجاح المشروع.
+            </p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 15px; margin-top: 30px;">
+                <div style="text-align: center; padding: 15px;"><div style="font-size: 2.5rem; font-weight: 800; margin-bottom: 5px;">+700 ألف</div><div style="font-size: 0.9rem; opacity: 0.9;">حامل لشهادة PMP</div></div>
+                <div style="text-align: center; padding: 15px;"><div style="font-size: 2.5rem; font-weight: 800; margin-bottom: 5px;">3</div><div style="font-size: 0.9rem; opacity: 0.9;">فئات للأدوات</div></div>
+                <div style="text-align: center; padding: 15px;"><div style="font-size: 2.5rem; font-weight: 800; margin-bottom: 5px;">25%</div><div style="font-size: 0.9rem; opacity: 0.9;">زيادة في المرتب</div></div>
+                <div style="text-align: center; padding: 15px;"><div style="font-size: 2.5rem; font-weight: 800; margin-bottom: 5px;">∞</div><div style="font-size: 0.9rem; opacity: 0.9;">نمو وظيفي</div></div>
+            </div>
+            <div style="margin-top: 30px;">
+                <p style="font-size: 1rem; opacity: 0.9;"><strong>الخطوات التالية:</strong> فكر في الحصول على شهادة PMP، استكشف برامج إدارة المشاريع، وتفاعل مع مصادر التطوير المهني من PMI.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="scroll-top" id="scrollTop">
+        <i class="fas fa-chevron-up"></i>
+    </div>
+
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        const scrollTopBtn = document.getElementById('scrollTop');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollTopBtn.classList.add('visible');
+            } else {
+                scrollTopBtn.classList.remove('visible');
+            }
+        });
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>

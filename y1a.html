@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أساسيات إدارة المشاريع | الدليل الكامل</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #f8fafc;
+            --accent-color: #10b981;
+            --warning-color: #f59e0b;
+            --success-color: #22c55e;
+            --info-color: #3b82f6;
+            --text-dark: #1e293b;
+            --text-light: #64748b;
+            --border-color: #e2e8f0;
+            --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --card-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --hover-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --scope-color: #8b5cf6;
+            --time-color: #06b6d4;
+            --cost-color: #f59e0b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: var(--secondary-color);
+            color: var(--text-dark);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        .nav-container {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .nav-brand {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--text-light);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-menu a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: var(--bg-gradient);
+            color: white;
+            padding: 120px 0 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="rgba(255,255,255,0.1)" points="0,0 1000,300 1000,1000 0,700"/></svg>');
+            background-size: cover;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .hero .subtitle {
+            font-size: 1.4rem;
+            opacity: 0.9;
+            margin-bottom: 40px;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 60px 0;
+        }
+
+        .section {
+            margin-bottom: 80px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: var(--card-shadow);
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--bg-gradient);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--hover-shadow);
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        h3 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 20px;
+        }
+
+        /* Chapter Sections */
+        .chapter-section {
+            border-right: 4px solid var(--primary-color);
+            padding-right: 30px;
+            margin: 50px 0;
+        }
+
+        .chapter-title {
+            background: var(--bg-gradient);
+            color: white;
+            padding: 20px 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        /* Definition Boxes */
+        .definition-box {
+            background: var(--bg-gradient);
+            color: white;
+            padding: 30px;
+            border-radius: 16px;
+            font-size: 1.3rem;
+            text-align: center;
+            margin: 30px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .definition-box::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+        }
+
+        /* Project Attributes Grid */
+        .attributes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .attribute-card {
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: var(--card-shadow);
+            transition: all 0.3s ease;
+            position: relative;
+            border-right: 5px solid var(--primary-color);
+        }
+
+        .attribute-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--hover-shadow);
+        }
+
+        .attribute-card:nth-child(1) { border-right-color: #3b82f6; }
+        .attribute-card:nth-child(2) { border-right-color: #10b981; }
+        .attribute-card:nth-child(3) { border-right-color: #f59e0b; }
+        .attribute-card:nth-child(4) { border-right-color: #8b5cf6; }
+        .attribute-card:nth-child(5) { border-right-color: #ef4444; }
+        .attribute-card:nth-child(6) { border-right-color: #84cc16; }
+
+        .attribute-card .icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .attribute-card:nth-child(1) .icon { background: #3b82f6; }
+        .attribute-card:nth-child(2) .icon { background: #10b981; }
+        .attribute-card:nth-child(3) .icon { background: #f59e0b; }
+        .attribute-card:nth-child(4) .icon { background: #8b5cf6; }
+        .attribute-card:nth-child(5) .icon { background: #ef4444; }
+        .attribute-card:nth-child(6) .icon { background: #84cc16; }
+
+        .attribute-card h4 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 15px;
+        }
+
+        .attribute-card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+
+        .example-box {
+            background: rgba(0,0,0,0.05);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+
+        .example-box h5 {
+            font-size: 1rem;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .example-box p {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin: 0;
+        }
+        
+        /* Triple Constraint Visual */
+        .constraint-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 40px 0;
+            position: relative;
+        }
+
+        .constraint-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 16px;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.3s ease;
+        }
+
+        .constraint-image:hover {
+            transform: scale(1.02);
+        }
+        
+        /* Success Definition Box */
+        .success-definition {
+            background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 16px;
+            text-align: center;
+            margin: 40px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .success-definition::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+        }
+
+        .success-definition h3 {
+            color: white;
+            margin-bottom: 15px;
+        }
+        
+        /* Additional Factors */
+        .additional-factors {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+
+        .factor-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+            text-align: center;
+            transition: all 0.3s ease;
+            border-top: 4px solid var(--primary-color);
+        }
+
+        .factor-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--hover-shadow);
+        }
+
+        .factor-card:nth-child(1) { border-top-color: #22c55e; }
+        .factor-card:nth-child(2) { border-top-color: #f59e0b; }
+        .factor-card:nth-child(3) { border-top-color: #ef4444; }
+
+        .factor-card i {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .factor-card:nth-child(1) i { color: #22c55e; }
+        .factor-card:nth-child(2) i { color: #f59e0b; }
+        .factor-card:nth-child(3) i { color: #ef4444; }
+
+        .factor-card h5 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--text-dark);
+        }
+
+        .factor-card p {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* Quick Reference Cards */
+        .quick-reference {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .quick-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+            text-align: center;
+            transition: all 0.3s ease;
+            border-top: 4px solid var(--primary-color);
+        }
+
+        .quick-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--hover-shadow);
+        }
+
+        .quick-card i {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .quick-card h5 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--text-dark);
+        }
+
+        .quick-card p {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        /* Summary Box */
+        .summary-box {
+            background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 16px;
+            text-align: center;
+            margin: 50px 0;
+        }
+
+        /* Visual Separator */
+        .visual-separator {
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            border-radius: 2px;
+            margin: 50px 0;
+        }
+
+        /* Scroll to Top */
+        .scroll-top {
+            position: fixed;
+            bottom: 20px;
+            left: 20px; /* Adjusted for RTL */
+            background: var(--primary-color);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: var(--card-shadow);
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .scroll-top.visible {
+            opacity: 1;
+        }
+
+        .scroll-top:hover {
+            background: var(--accent-color);
+            transform: translateY(-3px);
+        }
+        
+        .example-list {
+            list-style-type: none;
+            padding-right: 0;
+        }
+        .example-list li {
+            background-color: #f8fafc;
+            border-right: 3px solid var(--accent-color);
+            padding: 10px 15px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .card {
+                padding: 25px;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            .attributes-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-container">
+        <nav class="nav">
+            <div class="nav-brand">
+                <i class="fas fa-project-diagram"></i> دليل إدارة المشاريع
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#what-is-project">إيه هو المشروع؟</a></li>
+                <li><a href="#project-attributes">خصائص المشروع</a></li>
+                <li><a href="#project-constraints">محددات المشروع</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>أساسيات إدارة المشاريع</h1>
+                <p class="subtitle">فهم المشاريع، خصائصها، والمثلث الذهبي للمحددات</p>
+                <div style="font-size: 4rem; margin-top: 20px;">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container main-content">
+        
+        <section id="what-is-project" class="section">
+            <div class="chapter-section">
+                <div class="chapter-title">
+                    1.1 إيه هو المشروع؟
+                </div>
+                
+                <div class="card">
+                    <div class="definition-box">
+                        <div style="position: relative; z-index: 2;">
+                           المشروع هو <strong>"مجهود مؤقت بيتعمل عشان نُطلع بمنتج، خدمة، أو نتيجة فريدة من نوعها."</strong>
+                        </div>
+                    </div>
+
+                    <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-light); margin-bottom: 30px;">
+                        <strong>الـ Operations أو "التشغيل"، على الناحية التانية، هو الشغل اليومي اللي الشركة بتعمله عشان البيزنس يفضل شغال.</strong> المشاريع مختلفة عن التشغيل في إنها بتخلص لما أهدافها تتحقق أو لما المشروع يتلغي.
+                    </p>
+
+                    <h3>الفروقات الأساسية: المشاريع ضد التشغيل</h3>
+                    <div class="quick-reference">
+                        <div class="quick-card">
+                            <i class="fas fa-play-circle"></i>
+                            <h5>المشاريع (Projects)</h5>
+                            <p>مجهود مؤقت ليه بداية ونهاية محددة، وبيطلع حاجة فريدة.</p>
+                        </div>
+                        
+                        <div class="quick-card">
+                            <i class="fas fa-sync-alt"></i>
+                            <h5>التشغيل (Operations)</h5>
+                            <p>شغل مستمر ومُتكرر عشان البيزنس يفضل شغال.</p>
+                        </div>
+                        
+                        <div class="quick-card">
+                            <i class="fas fa-flag-checkered"></i>
+                            <h5>انتهاء المشروع</h5>
+                            <p>المشروع بينتهي لما أهدافه تتحقق أو يتم إلغاؤه.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="project-attributes" class="section">
+            <div class="chapter-section">
+                <div class="chapter-title">
+                    1.1 (أ): خصائص المشروع
+                </div>
+                
+                <div class="card">
+                    <p style="font-size: 1.1rem; margin-bottom: 30px; color: var(--text-light);">
+                        <strong>المشاريع بتيجي بكل الأشكال والأحجام.</strong> والخصائص دي بتساعدنا نعرّف المشروع بشكل أوضح:
+                    </p>
+
+                    <div class="attributes-grid">
+                        
+                        <div class="attribute-card">
+                            <div class="icon">
+                                <i class="fas fa-bullseye"></i>
+                            </div>
+                            <h4>ليه هدف فريد (Unique Purpose)</h4>
+                            <p><strong>كل مشروع ليه هدف واضح ومحدد.</strong> والمشاريع بتنتج منتج، خدمة، أو نتيجة فريدة.</p>
+                            
+                            <div class="example-box">
+                                <h5><i class="fas fa-lightbulb"></i> مثال:</h5>
+                                <p>نعمل تقرير تعاوني فيه أفكار من كل الناس اللي في الشركة.</p>
+                            </div>
+                        </div>
+
+                        <div class="attribute-card">
+                            <div class="icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <h4>مؤقت (Temporary)</h4>
+                            <p><strong>المشروع حاجة مؤقتة.</strong> ليه بداية ونهاية واضحة ومحددة.</p>
+                            
+                            <div class="example-box">
+                                <h5><i class="fas fa-calendar-alt"></i> مثال:</h5>
+                                <p>في مشروع التعاون بتاع الـ IT، ممكن المديرة تعمل فريق يشتغل فوراً وتتوقع تقرير وعرض تقديمي خلال شهر.</p>
+                            </div>
+                        </div>
+
+                        <div class="attribute-card">
+                            <div class="icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <h4>تطوير تدريجي (Progressive Elaboration)</h4>
+                            <p><strong>المشروع بيتطور بشكل تدريجي.</strong> التفاصيل بتوضح أكتر كل ما المشروع بيتقدم في مراحله.</p>
+                            
+                            <div class="example-box">
+                                <h5><i class="fas fa-cogs"></i> مثال:</h5>
+                                <p>لو الأفكار الأولية مش واضحة، الفريق ممكن يعمل استبيان عشان يحسن جودة الأفكار اللي بتجيله.</p>
+                            </div>
+                        </div>
+
+                        <div class="attribute-card">
+                            <div class="icon">
+                                <i class="fas fa-cubes"></i>
+                            </div>
+                            <h4>بيحتاج موارد (Resources)</h4>
+                            <p><strong>المشروع بيحتاج موارد، وغالباً من أقسام مختلفة.</strong> الموارد دي زي الناس، الأجهزة، البرامج، وأي أصول تانية.</p>
+                            
+                            <div class="example-box">
+                                <h5><i class="fas fa-users"></i> مثال:</h5>
+                                <p>لمشروع التعاون بتاع الـ IT، ناس من أقسام الـ IT والتسويق والمبيعات والتوزيع هيحتاجوا يشتغلوا مع بعض.</p>
+                            </div>
+                        </div>
+
+                        <div class="attribute-card">
+                            <div class="icon">
+                                <i class="fas fa-user-tie"></i>
+                            </div>
+                            <h4>ليه عميل أو راعي أساسي (Sponsor)</h4>
+                            <p><strong>المشروع لازم يكون ليه عميل أساسي أو راعي (Sponsor).</strong> الـ Sponsor ده هو اللي بيدي التوجيهات والفلوس. دعم الإدارة العليا مهم جداً لنجاح المشروع.</p>
+                            
+                            <div class="example-box">
+                                <h5><i class="fas fa-handshake"></i> مثال:</h5>
+                                <p>الـ Sponsor لمشروع تحسين مبيعات المنتجات أونلاين هيكون نائب رئيس قسم المبيعات.</p>
+                            </div>
+                        </div>
+
+                        <div class="attribute-card">
+                            <div class="icon">
+                                <i class="fas fa-question-circle"></i>
+                            </div>
+                            <h4>فيه نسبة عدم تأكد (Uncertainty)</h4>
+                            <p><strong>كل مشروع فيه نسبة من عدم اليقين.</strong> لأن كل مشروع فريد، بيبقى صعب نحدد أهدافه بدقة، أو نقدر هياخد وقت قد إيه، أو هيكلف كام.</p>
+                            
+                            <div class="example-box">
+                                <h5><i class="fas fa-exclamation-triangle"></i> مثال:</h5>
+                                <p>عوامل خارجية ممكن تسبب عدم تأكد، زي مثلاً عضو في الفريق يحتاج ياخد أجازة مفاجئة.</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="visual-separator"></div>
+
+        <section id="project-constraints" class="section">
+            <div class="chapter-section">
+                <div class="chapter-title">
+                    1.1 (ب): محددات المشروع (المثلث الذهبي)
+                </div>
+                
+                <div class="card">
+                    <p style="font-size: 1.1rem; margin-bottom: 30px; color: var(--text-light);">
+                        عشان نعمل مشروع ناجح، مدير المشروع لازم ياخد في اعتباره <strong>"المثلث الذهبي للمحددات" (Triple Constraint)</strong> - التلات قيود الأساسية اللي بتحدد إطار أي مشروع:
+                    </p>
+
+                    <div class="constraint-visual">
+                        <img src="https://i.postimg.cc/yxrWk5YR/image.png" 
+                             alt="صورة توضيحية للمثلث الذهبي للمحددات: النطاق، الوقت، والتكلفة" 
+                             class="constraint-image" />
+                    </div>
+
+                    <div class="success-definition">
+                        <div style="position: relative; z-index: 2;">
+                            <h3><i class="fas fa-trophy"></i> تعريف النجاح</h3>
+                            <p style="font-size: 1.1rem; opacity: 0.95;">
+                                <strong>إدارة المشاريع الناجحة معناها إنك تحقق كل الأهداف التلاتة (Scope, Time, Cost) — وترضي الـ Sponsor بتاع المشروع!</strong>
+                            </p>
+                        </div>
+                    </div>
+
+                    <h3>المحددات الأساسية التلاتة:</h3>
+                    <div class="attributes-grid">
+                        
+                        <div class="attribute-card">
+                            <div class="icon" style="background-color: var(--scope-color);">
+                                <i class="fas fa-tasks"></i>
+                            </div>
+                            <h4>النطاق (Scope)</h4>
+                            <p><strong>إيه هو الشغل اللي هيتعمل في المشروع؟</strong> إيه المنتج أو الخدمة أو النتيجة الفريدة اللي العميل أو الـ Sponsor مستنيها من المشروع؟</p>
+                            
+                            <div class="example-box">
+                                <h5><i class="fas fa-list"></i> أسئلة مهمة:</h5>
+                                <p>إيه هي المخرجات (Deliverables)؟ إيه هي حدود المشروع؟ مين اللي بيحدد أي تغييرات في الـ Scope؟</p>
+                            </div>
+                        </div>
+
+                        <div class="attribute-card">
+                            <div class="icon" style="background-color: var(--time-color);">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <h4>الوقت (Time)</h4>
+                            <p><strong>المشروع المفروض ياخد وقت قد إيه عشان يخلص؟</strong> إيه هو الجدول الزمني للمشروع؟ وإزاي الفريق هيتابع الأداء الفعلي مقارنة بالجدول؟</p>
+                            
+                            <div class="example-box">
+                                <h5><i class="fas fa-calendar"></i> أسئلة مهمة:</h5>
+                                <p>إيه هو آخر ميعاد للتسليم (Deadline)؟ إيه هي المحطات الرئيسية (Milestones)؟ مين يقدر يوافق على تغييرات الجدول الزمني؟</p>
+                            </div>
+                        </div>
+
+                        <div class="attribute-card">
+                            <div class="icon" style="background-color: var(--cost-color);">
+                                <i class="fas fa-dollar-sign"></i>
+                            </div>
+                            <h4>التكلفة (Cost)</h4>
+                            <p><strong>المشروع المفروض يكلف كام عشان يخلص؟</strong> إيه هي ميزانية المشروع؟ ومين يقدر يسمح بتغييرات في الميزانية؟</p>
+                            
+                            <div class="example-box">
+                                <h5><i class="fas fa-calculator"></i> أسئلة مهمة:</h5>
+                                <p>إيه هي الميزانية الإجمالية؟ إزاي هيتم تتبع التكاليف؟ مين عنده سلطة على الميزانية؟</p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div style="background: linear-gradient(135deg, rgba(37, 99, 235, 0.1) 0%, rgba(37, 99, 235, 0.05) 100%); border: 2px solid var(--primary-color); border-radius: 16px; padding: 25px; margin: 30px 0;">
+                        <h4 style="color: var(--primary-color); margin-bottom: 15px;"><i class="fas fa-balance-scale"></i> إدارة الموازنات (Trade-offs)</h4>
+                        <p style="color: var(--text-dark); line-height: 1.7;">
+                            <strong>إدارة المثلث الذهبي معناها إنك بتعمل موازنات (Trade-offs)</strong> بين أهداف الـ Scope والـ Time والـ Cost للمشروع. أي تغيير في واحد منهم، لازم هيأثر على الاتنين التانيين، وده بيحتاج توازن دقيق وتواصل مستمر مع أصحاب المصلحة.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="card">
+                <h2><i class="fas fa-plus-circle" style="color: var(--primary-color);"></i> عوامل ومحددات إضافية</h2>
+                
+                <p style="font-size: 1.1rem; margin-bottom: 30px; color: var(--text-light);">
+                    <strong>فيه عناصر تانية ممكن تلعب دور مهم</strong> غير المثلث الذهبي التقليدي:
+                </p>
+
+                <div class="additional-factors">
+                    
+                    <div class="factor-card">
+                        <i class="fas fa-medal"></i>
+                        <h5>الجودة (Quality)</h5>
+                        <p><strong>الجودة دايمًا عامل أساسي في المشاريع،</strong> زيها زي رضا العميل أو الـ Sponsor. لازم نحافظ على معايير الجودة واحنا بنوازن المثلث الذهبي.</p>
+                    </div>
+                    
+                    <div class="factor-card">
+                        <i class="fas fa-users"></i>
+                        <h5>الموارد (Resources)</h5>
+                        <p><strong>الـ Resources ممكن تكون هي الهم الأكبر.</strong> مثلاً، في صناعة الترفيه، كتير بيحتاجوا ممثلين معينين لأفلام أو مسلسلات.</p>
+                    </div>
+                    
+                    <div class="factor-card">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <h5>المخاطر (Risk)</h5>
+                        <p><strong>الـ Risk كمان ممكن يأثر على قرارات المشروع الكبيرة.</strong> ممكن شركة تستنى قبل ما تبدأ مشروع لحد ما المخاطر توصل لمستوى مقبول.</p>
+                    </div>
+                    
+                </div>
+
+                <div style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(16, 185, 129, 0.05) 100%); border: 2px solid var(--accent-color); border-radius: 16px; padding: 25px; margin: 30px 0;">
+                    <h4 style="color: var(--accent-color); margin-bottom: 15px;"><i class="fas fa-lightbulb"></i> نقطة مهمة</h4>
+                    <p style="color: var(--text-dark); line-height: 1.7;">
+                        صحيح المثلث الذهبي بيدينا إطار عمل أساسي، بس إدارة المشاريع الناجحة بتحتاج تاخد في اعتبارها العوامل الإضافية دي عشان تضمن نجاح شامل. إدارة المشاريع الحديثة بتعترف إن <strong>الـ Quality والـ Resources والـ Risk</strong> محددات مهمة بنفس قدر أهمية الـ Scope والـ Time والـ Cost.
+                    </p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="real-life-example" class="section">
+            <div class="card">
+                <h2><i class="fas fa-home" style="color: var(--primary-color);"></i> مثال من الحياة الواقعية: بناء بيت جديد</h2>
+                <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-light); margin-bottom: 30px;">
+                    تخيلوا إن عندنا <strong>Project</strong> لبناء بيت جديد. يلا نطبق عليه اللي اتعلمناه:
+                </p>
+        
+                <h3>إيه هو الـ Project ده؟</h3>
+                <p style="color: var(--text-dark); margin-bottom: 25px;">
+                    هو "مجهود مؤقت لبناء بيت جديد وفريد لأسرة معينة". الـ <strong>"product"</strong> هنا هو البيت نفسه.
+                </p>
+        
+                <h3>صفاته (Project Attributes):</h3>
+                <ul class="example-list">
+                    <li><strong>Unique purpose:</strong> الهدف هو تصميم وبناء بيت يلبي احتياجات الأسرة دي بالذات (عدد الغرف، التصميم، التشطيبات).</li>
+                    <li><strong>Temporary:</strong> الـ Project هيبدأ بتخطيط وشراء أرض، وهينتهي لما البيت يتسلم جاهز للسكن.</li>
+                    <li><strong>Progressive elaboration:</strong> ممكن نبدأ بتصميم مبدئي، وبعدين نبدأ نوضح التفاصيل أكتر زي نوع الرخام أو لون الدهانات مع تقدم البناء.</li>
+                    <li><strong>Requires resources:</strong> هنحتاج مهندسين، عمال، مواد بناء (طوب، أسمنت، خشب)، معدات.</li>
+                    <li><strong>Primary customer or sponsor:</strong> الأسرة اللي هتعيش في البيت هي الـ "customer" والـ "sponsor" اللي هيدفعوا التكلفة وهيدوا التوجيهات.</li>
+                    <li><strong>Involves uncertainty:</strong> ممكن تحصل مشاكل زي تأخير في توصيل مواد البناء، أو تغيير في أسعار المواد، أو حتى ظروف جوية تأخر الشغل.</li>
+                </ul>
+        
+                <h3 style="margin-top: 30px;">قيوده (Project Constraints) والـ "Triple Constraint":</h3>
+                <ul class="example-list">
+                    <li><strong>Scope:</strong> لازم نحدد بالظبط إيه اللي هيتبني؟ كم دور؟ كم غرفة؟ نوع التشطيبات؟ (مثلاً، تشطيب سوبر لوكس).</li>
+                    <li><strong>Time:</strong> البيت ده هيخلص في قد إيه؟ سنة؟ سنتين؟ ولازم يكون فيه "schedule" واضح.</li>
+                    <li><strong>Cost:</strong> الميزانية المحددة للبيت ده كام؟ 2 مليون جنيه مثلاً؟ ولازم نراقب المصاريف عشان ما نتخطاش الـ "budget".</li>
+                </ul>
+
+                <h3 style="margin-top: 30px;">عناصر تانية مهمة:</h3>
+                <ul class="example-list">
+                    <li><strong>Quality:</strong> هل جودة التشطيبات والإنشاءات هتكون عالية عشان الأسرة تكون راضية؟.</li>
+                    <li><strong>Resources:</strong> هل المقاولين والعمال المتاحين كافيين لإنهاء المشروع في الوقت والجودة المطلوبة؟.</li>
+                    <li><strong>Risk:</strong> إيه المخاطر المحتملة؟ زي مشاكل في تراخيص البناء، أو ارتفاع مفاجئ في أسعار المواد. وإزاي هنتعامل معاها؟.</li>
+                </ul>
+            </div>
+        </section>
+        <div class="visual-separator"></div>
+        
+        <div class="summary-box">
+            <h2><i class="fas fa-graduation-cap"></i> كده أنت أتقنت أساسيات إدارة المشاريع!</h2>
+            <p style="font-size: 1.2rem; opacity: 0.95; margin: 20px 0;">
+                دلوقتي أنت فهمت يعني إيه مشروع، وإيه هي خصائصه، وإزاي تدير المثلث الذهبي للمحددات. الأساس ده بيجهزك عشان تسلم مشاريع ناجحة في أي مجال.
+            </p>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 15px; margin-top: 30px;">
+                <div style="text-align: center; padding: 15px;">
+                    <div style="font-size: 2.5rem; font-weight: 800; margin-bottom: 5px;">6</div>
+                    <div style="font-size: 0.9rem; opacity: 0.9;">خصائص للمشروع</div>
+                </div>
+                <div style="text-align: center; padding: 15px;">
+                    <div style="font-size: 2.5rem; font-weight: 800; margin-bottom: 5px;">3</div>
+                    <div style="font-size: 0.9rem; opacity: 0.9;">محددات أساسية</div>
+                </div>
+                <div style="text-align: center; padding: 15px;">
+                    <div style="font-size: 2.5rem; font-weight: 800; margin-bottom: 5px;">3</div>
+                    <div style="font-size: 0.9rem; opacity: 0.9;">عوامل إضافية</div>
+                </div>
+                <div style="text-align: center; padding: 15px;">
+                    <div style="font-size: 2.5rem; font-weight: 800; margin-bottom: 5px;">∞</div>
+                    <div style="font-size: 0.9rem; opacity: 0.9;">تطبيقات</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="scroll-top" id="scrollTop">
+        <i class="fas fa-chevron-up"></i>
+    </div>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Scroll to top functionality
+        const scrollTopBtn = document.getElementById('scrollTop');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollTopBtn.classList.add('visible');
+            } else {
+                scrollTopBtn.classList.remove('visible');
+            }
+        });
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>
